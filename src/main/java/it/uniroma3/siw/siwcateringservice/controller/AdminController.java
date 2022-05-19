@@ -1,0 +1,12 @@
+package it.uniroma3.siw.siwcateringservice.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("private")
+public class AdminController {
+
+
+
+}

@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8"/>
-    <link href="/css/persona-style.css" rel="stylesheet">
-    <title>Dettagli persona</title>
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Ingredient details</title>
 </head>
 <body>
 <div>
-    <h4>Dettagli persona</h4>
-    <!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
-    <div th:if="${persona}">
-        <span th:text="${persona.nome}">Paolo</span>
-        <span th:text="${persona.cognome}">Rossi</span>
-    </div>
+	<h4>Ingredient details</h4>
 
-    <div th:unless="${persona}">Non esiste</div>
+	<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+	<div th:if="${ingredient}">
+		<div>
+			<span th:text="${ingredient.name}">Sugar, </span>
+			<span th:text="${ingredient.origin}">Mexico</span>
+		</div>
+		<div>
+			<span th:text="${ingredient.description}">A wonderful description of a tasteful ingredient</span>
+		</div>
+	</div>
 
-    <h4>Dettagli persona</h4>
-    <div th:object="${persona}">
-        <span th:text="*{nome}">Paolo</span>
-        <span th:text="*{cognome}">Rossi</span>
-    </div>
+	<div th:unless="${ingredient}">This ingredient does not exist.</div>
+
+	<!--<h4>Dettagli persona</h4>
+	<div th:object="${ingredient}">
+		<span th:text="*{nome}">Paolo</span>
+		<span th:text="*{cognome}">Rossi</span>
+	</div>-->
 
 
 </div>
-<footer><a href="/">Home</a></footer>
 </body>
+<div th:replace="fragments/components :: footer"></div>
 </html>

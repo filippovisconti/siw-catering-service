@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8">
-	<title>Inserisci persona</title>
+
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Add an ingredient</title>
 </head>
 <body>
-<h1>Aggiungi una persona</h1>
-<!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
-<form method="POST" th:action="@{/persona}" th:object="${persona}">
+<h1>Add an ingredient</h1>
+
+<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+<form method="POST" th:action="@{/ingredient}" th:object="${ingredient}">
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 	</div>
 	<div>
-		<span>Nome:</span>
+		<span>Name:</span>
 		<span>
 				<label>
-					<input th:field="*{nome}" type="text"/>
+					<input th:field="*{name}" type="text"/>
 				</label>
 				</span>
-		<span th:errors="*{nome}" th:if="${#fields.hasErrors('nome')}"></span>
+		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
 	</div>
 	<div>
-		<span>Cognome:</span>
+		<span>Origin:</span>
 		<span>
 				<label>
-					<input th:field="*{cognome}" type="text"/>
+					<input th:field="*{origin}" type="text"/>
 				</label>
 			</span>
-		<span th:errors="*{cognome}" th:if="${#fields.hasErrors('cognome')}"></span>
+		<span th:errors="*{origin}" th:if="${#fields.hasErrors('origin')}"></span>
 	</div>
 	<div>
-		<span>Età:</span>
+		<span>Description:</span>
 		<span>
 				<label>
-					<input th:field="*{eta}" type="text"/>
+					<input th:field="*{description}" type="text"/>
 				</label>
 				</span>
-		<span th:errors="*{eta}" th:if="${#fields.hasErrors('eta')}"></span>
+		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
 	</div>
 	<div>
-		<span><button type="submit">Conferma</button></span>
+		<span><button type="submit">Add</button></span>
 	</div>
 </form>
 </body>
-<footer><a href="/">Home</a></footer>
+<div th:replace="fragments/components :: footer"></div>
 </html>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8">
+<head th:replace="fragments/components :: baseHead(~{::title})">
 	<title>Catering Service</title>
 </head>
 <body>
-<div>Hello <p th:text="${name}">UserName </p> and Welcome to the Catering Service.</div>
-<p th:text="${authorities.isEmpty()}">Authorities </p>
+<div>[DEBUG]public_index.html</div>
+<h2>Hello World, and Welcome to the public interface of the Catering Service.</h2>
+
+<!--<div><a href="/index.html" th:href="@{/public/add/buffet}">add buffet public</a></div>
+<div><a href="/index.html" th:href="@{/private/add/chef}">add chef private</a></div>-->
+<div><a href="/ingredients" th:href="@{/ingredients}">show ingredients</a></div>
+<div><a href="/ingredientsForm" th:href="@{/ingredientForm}">add ingredient</a></div>
+
+
 </body>
 <div th:replace="fragments/components :: footer"></div>
 </html>

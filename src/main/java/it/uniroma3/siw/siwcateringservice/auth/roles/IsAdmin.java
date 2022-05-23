@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize("hasAuthority('READ') and  hasAuthority('WRITE')")
+//@PreAuthorize("hasAuthority('READ') and hasAuthority('WRITE')")
+@PreAuthorize("isAuthenticated()")
 public @interface IsAdmin {
 }

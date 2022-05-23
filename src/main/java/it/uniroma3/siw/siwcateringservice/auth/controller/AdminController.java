@@ -1,4 +1,4 @@
-package it.uniroma3.siw.siwcateringservice.controller.management;
+package it.uniroma3.siw.siwcateringservice.auth.controller;
 
 import it.uniroma3.siw.siwcateringservice.auth.roles.IsAdmin;
 import it.uniroma3.siw.siwcateringservice.model.Buffet;

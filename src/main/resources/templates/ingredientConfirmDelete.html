@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8" />
-	<title>Demo</title>
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Confirm removal</title>
 </head>
 <body>
 <div>
-	<h4>Confermi la rimozione?</h4>
-	<!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
-	<a href="error.html"
-	   th:href="@{'/remove/confirm/persona' + '/' + ${persona.id}}"
-	   th:text="'Rimuovi ' + ${persona.nome}">Rimuovi Paolo</a>
+	<h4>Are you sure you want to remove this?</h4>
 
+	<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+	<div th:text="'Remove ' + ${ingredient.name}">Remove sugar</div>
+
+	<form method="POST" th:action="@{'/remove/confirm/ingredient' + '/' + ${ingredient.id}}" th:object="${ingredient}">
+		<span><button type="submit">Confirm</button></span>
+	</form>
 	<a href="error.html"
-	   th:href="@{'/persone'}"
-	   th:text="Annulla ">Annulla</a>
+	   th:href="@{'/ingredients'}"
+	   th:text="Cancel">Cancel</a>
 
 </div>
-<footer><a href="/">Home</a></footer>
 </body>
+<div th:replace="fragments/components :: footer"></div>
 </html>
+

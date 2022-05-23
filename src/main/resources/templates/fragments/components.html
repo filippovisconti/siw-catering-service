@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="baseHead(title, links)">
+<head th:fragment="baseHead(title)">
 
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
-
+	<meta charset="UTF-8" />
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 	<link rel="stylesheet" th:href="@{/css/basestyle.css}">
 	<script th:src="@{/js/jquery.min.js}"></script>
 
-	<!-- placeholder for additional links -->
-	<th:block th:replace="${links}" />
+	<!-- placeholder for additional links
+	<th:block th:replace="${links}"/>-->
 
 </head>
+
 <body>
+
+</body>
+
 <footer th:fragment="footer">
 	<p>&copy; 2022 filippovisconti.com</p>
-	<div><a href="/index.html" th:href="@{/}">Home</div>
+	<span><a href="/index.html" th:href="@{/}">Home</a></span>
+	<span><a href="/index.html" th:href="@{/logout}">Logout</a></span>
 </footer>
-</body>
 </html>

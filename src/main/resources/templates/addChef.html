@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8">
-	<title>Catering Service</title>
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Add a chef - Catering Service</title>
 </head>
 <body>
-<div>Hello <p th:text="${name}">UserName </p> and Welcome to the Catering Service.</div>
-<p th:text="${authorities.isEmpty()}">Authorities </p>
+<h1>Private - Add a Chef</h1>
+
+<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+<form method="POST" th:action="@{/addChef}" th:object="${chef}">
+	<div th:if="${#fields.hasGlobalErrors()}">
+		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+	</div>
+	<div>
+		<span>First Name:</span>
+		<span>
+				<label>
+					<input th:field="*{firstName}" type="text"/>
+				</label>
+				</span>
+		<span th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></span>
+	</div>
+	<div>
+		<span>Last Name:</span>
+		<span>
+				<label>
+					<input th:field="*{lastName}" type="text"/>
+				</label>
+			</span>
+		<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
+	</div>
+	<div>
+		<span><button type="submit">Conferma</button></span>
+	</div>
+</form>
 </body>
 <div th:replace="fragments/components :: footer"></div>
 </html>

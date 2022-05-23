@@ -1,4 +1,4 @@
-package it.uniroma3.siw.siwcateringservice.controller;
+package it.uniroma3.siw.siwcateringservice.controller.management;
 
 import it.uniroma3.siw.siwcateringservice.model.Buffet;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

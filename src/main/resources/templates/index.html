@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8">
-	<title>Welcome to the Catering Service.</title>
+<head th:replace="fragments/components :: baseHead(~{::title})">
 </head>
 <body>
-Hello and Welcome to the Catering Service.
+<div>[DEBUG]index.html</div>
+<h2>Welcome to the Catering Service.</h2>
+
+<!--<div><a href="/index.html" th:href="@{/public/add/buffet}">add buffet public</a></div>
+<div><a href="/index.html" th:href="@{/private/add/chef}">add chef private</a></div>-->
+<div><a href="/ingredients" th:href="@{/ingredients}">Administration</a></div>
+<div><a href="/ingredientsForm" th:href="@{/ingredientForm}">View buffets and details</a></div>
+
+
 </body>
 <div th:replace="fragments/components :: footer"></div>
 </html>

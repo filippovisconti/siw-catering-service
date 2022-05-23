@@ -1,2 +1,7 @@
-package it.uniroma3.siw.siwcateringservice.controller;public class DishController {
+package it.uniroma3.siw.siwcateringservice.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class DishController {
 }

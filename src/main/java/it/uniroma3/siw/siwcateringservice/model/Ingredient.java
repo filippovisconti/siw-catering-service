@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @NoArgsConstructor
@@ -19,7 +20,9 @@ public class Ingredient {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String Name;
+	@NotBlank
+	private String name;
+	@NotBlank
 	private String origin;
 	private String description;
 }

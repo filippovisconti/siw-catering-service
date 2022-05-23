@@ -1,56 +1,55 @@
 package it.uniroma3.siw.siwcateringservice.auth;
 
-import com.google.firebase.auth.FirebaseAuth;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 //https://www.baeldung.com/spring-security-login
+
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure (HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/public*").permitAll()
+				.anyRequest().permitAll();
+
+		/*http.authorizeRequests()
+				.antMatchers("/public/**").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
-				.formLogin()
-				.loginPage("/login.html")
-				.loginProcessingUrl("/perform_login")
-				.defaultSuccessUrl("/homepage.html", true)
-				.failureUrl("/login.html?error=true")
-				.and()
-				.logout()
-				.logoutUrl("/perform_logout")
-				.invalidateHttpSession(true) //
-				.deleteCookies("JSESSIONID")
-				.clearAuthentication(true).permitAll();//
-
-		http.oauth2ResourceServer()
-				.jwt()
-				.jwtAuthenticationConverter(jwtAuthenticationConverter());
+				.oauth2Login();
+		 */
+		//.defaultSuccessUrl("/loginSuccess")
+		//.failureUrl("/loginFailure");
 	}
+/*
+	@Bean
+	public GrantedAuthoritiesMapper userAuthoritiesMapper () {
+		return (authorities) -> {
+			Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
-	public JwtAuthenticationConverter jwtAuthenticationConverter() {
-		JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+			authorities.forEach(authority -> {
+				if (OAuth2UserAuthority.class.isInstance(authority)) {
+					OAuth2UserAuthority oauth2UserAuthority = (OAuth2UserAuthority) authority;
 
-		converter.setJwtGrantedAuthoritiesConverter(jwt ->
-				Optional.ofNullable(jwt.getClaimAsStringList("custom_claims"))
-						.stream()
-						.flatMap(Collection::stream)
-						.map(SimpleGrantedAuthority::new)
-						.collect(Collectors.toList())
-		);
+					Map<String, Object> userAttributes = oauth2UserAuthority.getAttributes();
+					mappedAuthorities.add(oauth2UserAuthority);
+					// Map the attributes found in userAttributes
+					// to one or more GrantedAuthority's and add it to mappedAuthorities
 
-		return converter;
-	}
+				}
+			});
+
+			return mappedAuthorities;
+		};
+	}*/
 }

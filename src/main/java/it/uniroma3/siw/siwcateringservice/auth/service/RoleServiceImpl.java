@@ -1,25 +1,10 @@
 package it.uniroma3.siw.siwcateringservice.auth.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+//@Service
+//@Slf4j
+public class RoleServiceImpl {//implements RoleService {
 
-import it.uniroma3.siw.siwcateringservice.auth.properties.SecurityProperties;
-import it.uniroma3.siw.siwcateringservice.auth.roles.MyPermission;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.UserRecord;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Service
-@Slf4j
-public class RoleServiceImpl implements RoleService {
-
+	/*
 	@Autowired
 	FirebaseAuth firebaseAuth;
 
@@ -74,5 +59,7 @@ public class RoleServiceImpl implements RoleService {
 			log.error("Firebase Auth Error ", e);
 		}
 	}
+
+	 */
 
 }

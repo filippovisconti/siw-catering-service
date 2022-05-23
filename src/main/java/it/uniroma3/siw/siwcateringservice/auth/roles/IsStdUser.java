@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@PreAuthorize("hasAuthority('READ')")
+//@PreAuthorize("hasAuthority('READ')")
+@PreAuthorize("isAnonymous()")
 public @interface IsStdUser {
 }

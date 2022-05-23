@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-	<meta charset="UTF-8" />
-	<title>Demo</title>
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Success</title>
 </head>
 <body>
 <div>
-	<h1>Yayy</h1>
+	<h1>Everything went smoothly.</h1>
 </div>
-<footer><a href="/">Home</a></footer>
 </body>
+<div th:replace="fragments/components :: footer"></div>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8" />
+	<title>Demo</title>
+</head>
+<body>
+<div>
+	<h4>Confermi la rimozione?</h4>
+	<!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
+	<a href="error.html"
+	   th:href="@{'/remove/confirm/persona' + '/' + ${persona.id}}"
+	   th:text="'Rimuovi ' + ${persona.nome}">Rimuovi Paolo</a>
+
+	<a href="error.html"
+	   th:href="@{'/persone'}"
+	   th:text="Annulla ">Annulla</a>
+
+</div>
+<footer><a href="/">Home</a></footer>
+</body>
+</html>

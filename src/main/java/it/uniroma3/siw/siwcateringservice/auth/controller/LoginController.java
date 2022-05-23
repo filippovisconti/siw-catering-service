@@ -1,4 +1,4 @@
-package it.uniroma3.siw.siwcateringservice.controller;
+package it.uniroma3.siw.siwcateringservice.controller.management;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8">
+	<title>Catering Service</title>
+</head>
+<body>
+<div>Hello <p th:text="${name}">UserName </p> and Welcome to the Catering Service.</div>
+<p th:text="${authorities.isEmpty()}">Authorities </p>
+</body>
+<div th:replace="fragments/components :: footer"></div>
+</html>

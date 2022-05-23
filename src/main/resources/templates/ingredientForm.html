@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8">
+	<title>Inserisci persona</title>
+</head>
+<body>
+<h1>Aggiungi una persona</h1>
+<!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
+<form method="POST" th:action="@{/persona}" th:object="${persona}">
+	<div th:if="${#fields.hasGlobalErrors()}">
+		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+	</div>
+	<div>
+		<span>Nome:</span>
+		<span>
+				<label>
+					<input th:field="*{nome}" type="text"/>
+				</label>
+				</span>
+		<span th:errors="*{nome}" th:if="${#fields.hasErrors('nome')}"></span>
+	</div>
+	<div>
+		<span>Cognome:</span>
+		<span>
+				<label>
+					<input th:field="*{cognome}" type="text"/>
+				</label>
+			</span>
+		<span th:errors="*{cognome}" th:if="${#fields.hasErrors('cognome')}"></span>
+	</div>
+	<div>
+		<span>Età:</span>
+		<span>
+				<label>
+					<input th:field="*{eta}" type="text"/>
+				</label>
+				</span>
+		<span th:errors="*{eta}" th:if="${#fields.hasErrors('eta')}"></span>
+	</div>
+	<div>
+		<span><button type="submit">Conferma</button></span>
+	</div>
+</form>
+</body>
+<footer><a href="/">Home</a></footer>
+</html>

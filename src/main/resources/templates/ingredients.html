@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Persone</title>
+</head>
+<body>
+<h4>Elenco persone</h4>
+<ul>
+    <!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
+    <!--/*@thymesVar id="persone" type="it.uniroma3.siw.spring.model.Persona"*/-->
+    <li th:each="persona : ${persone}">
+        <a href="persona.html"
+           th:href="@{'/persona' + '/' + ${persona.id}}"
+           th:text="${persona.nome} + ' ' + ${persona.cognome}">Paolo Rossi</a>
+        -|-
+        <a href="error.html"
+           th:href="@{'/remove/ask/persona' + '/' + ${persona.id}}"
+           th:text="'Rimuovi ' + ${persona.nome}">Rimuovi Paolo</a>
+    </li>
+</ul>
+</body>
+<footer><a href="/">Home</a></footer>
+</html>
+

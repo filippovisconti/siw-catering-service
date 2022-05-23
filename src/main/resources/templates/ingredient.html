@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="/css/persona-style.css" rel="stylesheet">
+    <title>Dettagli persona</title>
+</head>
+<body>
+<div>
+    <h4>Dettagli persona</h4>
+    <!--/*@thymesVar id="persona" type="it.uniroma3.siw.spring.model.Persona"*/-->
+    <div th:if="${persona}">
+        <span th:text="${persona.nome}">Paolo</span>
+        <span th:text="${persona.cognome}">Rossi</span>
+    </div>
+
+    <div th:unless="${persona}">Non esiste</div>
+
+    <h4>Dettagli persona</h4>
+    <div th:object="${persona}">
+        <span th:text="*{nome}">Paolo</span>
+        <span th:text="*{cognome}">Rossi</span>
+    </div>
+
+
+</div>
+<footer><a href="/">Home</a></footer>
+</body>
+</html>

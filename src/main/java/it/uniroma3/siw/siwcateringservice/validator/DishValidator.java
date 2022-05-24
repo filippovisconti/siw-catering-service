@@ -27,6 +27,6 @@ public class DishValidator implements Validator {
 
 	@Override
 	public boolean supports (Class<?> clazz) {
-		return Persona.class.equals(clazz);
+		return Dish.class.equals(clazz);
 	}
 }

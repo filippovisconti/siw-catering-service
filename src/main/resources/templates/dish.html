@@ -10,8 +10,8 @@
 	<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
 	<div th:if="${dish}">
 		<div>
-			<span th:text="${dish.name}">Tagliatelle di Nonna Pina, </span>
-			<span th:text="${dish.description}">A tasteful dish made with love</span>
+			<div th:text="${dish.name}">Tagliatelle di Nonna Pina</div>
+			<div th:text="${dish.description}">A tasteful dish made with love</div>
 		</div>
 <ul>
 		<li th:each="ingredient : ${dish.ingredients}">

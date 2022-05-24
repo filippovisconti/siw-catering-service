@@ -25,6 +25,6 @@ public class IngredientValidator implements Validator {
 
 	@Override
 	public boolean supports (Class<?> clazz) {
-		return Persona.class.equals(clazz);
+		return Ingredient.class.equals(clazz);
 	}
 }

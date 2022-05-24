@@ -7,14 +7,14 @@
 <div>
 	<h4>Are you sure you want to remove this?</h4>
 
-	<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
-	<div th:text="'Remove ' + ${dish.name}">Remove sugar</div>
+	<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+	<div th:text="'Remove ' + ${chef.firstName} +' '+ ${chef.firstName}">Remove Carlo Cracco</div>
 
-	<form method="POST" th:action="@{'/remove/confirm/dish' + '/' + ${dish.id}}" th:object="${dish}">
+	<form method="POST" th:action="@{'/remove/confirm/chef' + '/' + ${chef.id}}" th:object="${chef}">
 		<span><button type="submit">Confirm</button></span>
 	</form>
 	<a href="error.html"
-	   th:href="@{'/dishes'}"
+	   th:href="@{'/chefs'}"
 	   th:text="Cancel">Cancel</a>
 
 </div>

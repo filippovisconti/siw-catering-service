@@ -26,6 +26,6 @@ public class ChefValidator implements Validator {
 
 	@Override
 	public boolean supports (Class<?> clazz) {
-		return Persona.class.equals(clazz);
+		return Chef.class.equals(clazz);
 	}
 }

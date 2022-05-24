@@ -5,24 +5,24 @@
 </head>
 <body>
 <div>
-	<h4>Dish details</h4>
+	<h4>Chef details</h4>
 
-	<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-	<div th:if="${dish}">
+	<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+	<div th:if="${chef}">
 		<div>
-			<span th:text="${dish.name}">Tagliatelle di Nonna Pina, </span>
-			<span th:text="${dish.description}">A tasteful dish made with love</span>
+			<span th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </span>
+			<span th:text="${chef.nationality}">Italy</span>
 		</div>
-<ul>
-		<li th:each="ingredient : ${dish.ingredients}">
-			<a href="ingredient.html/0"
-			   th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
-			   th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>
-		</li>
-</ul>
+		<ul>
+			<li th:each="buffet : ${chef.offeredBuffets}">
+				<a href="ingredient.html/0"
+				   th:href="@{'/buffet' + '/' + ${buffet.id}}"
+				   th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne, WithAGreatDescription</a>
+			</li>
+		</ul>
 	</div>
 
-	<div th:unless="${dish}">This dish does not exist.</div>
+	<div th:unless="${chef}">This dish does not exist.</div>
 
 	<!--<h4>Dettagli persona</h4>
 	<div th:object="${ingredient}">

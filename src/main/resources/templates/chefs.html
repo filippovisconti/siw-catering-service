@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments/components :: baseHead(~{::title})">
-    <title>Dishes list</title>
+    <title>Chefs list</title>
 </head>
 <body>
-<h4>Dishes list</h4>
+<h4>Chefs list</h4>
 <ul>
 
-    <!--/*@thymesVar id="dishes" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-    <li th:each="dish : ${dishes}">
-        <a href="dish.html/0"
-           th:href="@{'/dish' + '/' + ${dish.id}}"
-           th:text="${dish.name} + ', ' + ${dish.origin}">Tagliatelle di Nonna Pina, Italy</a>
+    <!--/*@thymesVar id="chefs" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+    <li th:each="chef : ${chefs}">
+        <a href="chef.html/0"
+           th:href="@{'/chef' + '/' + ${chef.id}}"
+           th:text="${chef.firstName} + ' ' +${chef.lastName} + ', '+ ${chef.nationality}">Carlo Cracco, Italy</a>
         <br>
-        <form method="POST" th:action="@{'/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
+        <form method="POST" th:action="@{'/remove/ask/chef' + '/' + ${chef.id}}" th:object="${chef}">
                 <button type="submit">Remove</button>
         </form>
     </li>

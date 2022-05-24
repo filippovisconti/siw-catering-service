@@ -9,16 +9,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Entity
-@NoArgsConstructor
+
 @Getter
 @Setter
-public class Dish {
+@NoArgsConstructor
+public class DishCreator {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	public DishCreator (Dish d){
+		this.id = d.getId();
+		this.name = d.getName();
+		this.description = d.getDescription();
+		this.ingredients = d.getIngredients();
+	}
+
 	private Long id;
-
 	@NotBlank
 	private String name;
 	@NotBlank
@@ -28,10 +32,5 @@ public class Dish {
 	@NotEmpty
 	private List<Ingredient> ingredients;
 
-	public Dish (DishCreator d){
-		this.id = d.getId();
-		this.name = d.getName();
-		this.description = d.getDescription();
-		this.ingredients = d.getIngredients();
-	}
+
 }

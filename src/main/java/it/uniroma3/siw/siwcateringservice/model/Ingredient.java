@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 
 @Entity
 @NoArgsConstructor
@@ -26,4 +24,7 @@ public class Ingredient {
 	private String origin;
 	@NotBlank
 	private String description;
+	@ManyToMany
+	private Collection<Dish> dishes;
+
 }

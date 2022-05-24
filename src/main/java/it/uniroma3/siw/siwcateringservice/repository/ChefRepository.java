@@ -16,5 +16,5 @@ public interface ChefRepository extends CrudRepository<Chef, Long>
 	List<Chef> findByLastName(String lastName);
 	boolean existsByFirstNameAndLastName(String firstName, String lastName);
 
-	List<Chef> findByFirstNameOrLastName (String firstOrLastName);
+	List<Chef> findByFirstNameOrLastName (String firstName, String lastName);
 }

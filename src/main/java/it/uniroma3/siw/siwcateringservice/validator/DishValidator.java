@@ -21,8 +21,13 @@ public class DishValidator implements Validator {
 	@Override
 	public void validate (Object target, Errors errors) {
 		if (this.dishService.hasDuplicate((Dish) target)){
-			errors.reject("dish.duplicate");
+			errors.reject("dish.duplicate", "duplicate dish, damn");
 		}
+		/*if (((Dish) target).getIngredients().isEmpty() ||((Dish) target).getIngredients() == null){
+			errors.reject("dish.no_ingredients", "no ingredients");
+		}
+
+		 */
 	}
 
 	@Override

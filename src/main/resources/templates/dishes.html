@@ -11,7 +11,8 @@
     <li th:each="dish : ${dishes}">
         <a href="dish.html/0"
            th:href="@{'/dish' + '/' + ${dish.id}}"
-           th:text="${dish.name} + ', ' + ${dish.origin}">Tagliatelle di Nonna Pina, Italy</a>
+           th:text="${dish.name} + ', ' + ${dish.description}">Tagliatelle di Nonna Pina, Italy</a>
+
         <br>
         <form method="POST" th:action="@{'/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
                 <button type="submit">Remove</button>

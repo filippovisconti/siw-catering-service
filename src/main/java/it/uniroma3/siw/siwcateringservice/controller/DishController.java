@@ -1,6 +1,8 @@
 package it.uniroma3.siw.siwcateringservice.controller;
 
 import it.uniroma3.siw.siwcateringservice.model.Dish;
+import it.uniroma3.siw.siwcateringservice.model.DishCreator;
+import it.uniroma3.siw.siwcateringservice.model.Ingredient;
 import it.uniroma3.siw.siwcateringservice.service.DishService;
 import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.DishValidator;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,20 +39,25 @@ public class DishController {
 	}
 
 	@GetMapping("/dishForm")
-	public String getDishForm(Model model) {
-		model.addAttribute("dish", new Dish());
-		model.addAttribute("ingredients", ingredientService.findAll());
+	public String getDishForm(Model model) { // NON FUNZIONA
+		var d = new DishCreator();
+		//d.setIngredients(new ArrayList<>(ingredientService.findAll()));
+		model.addAttribute("dish", d);
+		model.addAttribute("ingredientsList", ingredientService.findAll());
+		//model.addAttribute("ingredientList", new ArrayList<IngredientController>());
 		String nextPage = "dishForm.html";
 		return nextPage;
 	}
 
 	@PostMapping("/dish")
-	public String newDish (@Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResult, Model model) {
+	public String newDish (@Valid @ModelAttribute("dish") DishCreator dishCreator, BindingResult bindingResult, Model model) {
+		var dish = new Dish(dishCreator);
 		this.dishValidator.validate(dish,bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.dishService.save(dish); // salvo un oggetto Dish
-			model.addAttribute("dish", this.dishService.findById(dish.getId()));
+			var d = this.dishService.findById(dish.getId());
+			model.addAttribute("dish", d);
 			nextPage = "dish.html";	  // presenta un pagina con la dish appena salvata
 		} else
 			nextPage = "dishForm.html"; // ci sono errori, torna alla form iniziale

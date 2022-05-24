@@ -3,7 +3,6 @@ package it.uniroma3.siw.siwcateringservice.controller;
 import it.uniroma3.siw.siwcateringservice.model.Chef;
 import it.uniroma3.siw.siwcateringservice.service.ChefService;
 import it.uniroma3.siw.siwcateringservice.service.DishService;
-import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.ChefValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

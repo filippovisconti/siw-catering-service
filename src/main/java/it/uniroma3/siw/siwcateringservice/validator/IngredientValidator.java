@@ -19,7 +19,7 @@ public class IngredientValidator implements Validator {
 	@Override
 	public void validate (Object target, Errors errors) {
 		if (this.ingredientService.hasDuplicate((Ingredient) target)){
-			errors.reject("ingredient.duplicate");
+			errors.reject("ingredient.duplicate", "duplicate ingredient");
 		}
 	}
 

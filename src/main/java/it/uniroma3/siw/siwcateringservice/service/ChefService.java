@@ -29,8 +29,8 @@ public class ChefService {
 		return chefRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
 
-	public List<Chef> search (String firstOrLastName) {
-		return chefRepository.findByFirstNameOrLastName(firstOrLastName);
+	public List<Chef> searchByFirstOrLastName (String firstName, String lastName) {
+		return chefRepository.findByFirstNameOrLastName(firstName, lastName);
 	}
 
 	public boolean hasDuplicate (Chef chef) {

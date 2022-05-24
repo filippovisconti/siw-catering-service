@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @Entity
+@Table(name = "user_table")
 @Getter
 @Setter
 @NoArgsConstructor

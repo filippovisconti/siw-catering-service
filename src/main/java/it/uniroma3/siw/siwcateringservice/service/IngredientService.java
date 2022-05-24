@@ -20,6 +20,11 @@ public class IngredientService {
 		return ingredientRepository.save(ingredient);
 	}
 
+	@Transactional
+	public void save (Ingredient ingredient) {
+		ingredientRepository.save(ingredient);
+	}
+
 	public List<Ingredient> search (String name, String origin) {
 		return ingredientRepository.findByNameOrOrigin(name, origin);
 	}
@@ -36,10 +41,6 @@ public class IngredientService {
 	}
 
 	@Transactional
-	public void save (Ingredient ingredient) {
-		ingredientRepository.save(ingredient);
-	}
-
 	public void deleteIngredientById (Long id) {
 		ingredientRepository.deleteById(id);
 	}

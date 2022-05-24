@@ -24,5 +24,6 @@ public class Ingredient {
 	private String name;
 	@NotBlank
 	private String origin;
+	@NotBlank
 	private String description;
 }

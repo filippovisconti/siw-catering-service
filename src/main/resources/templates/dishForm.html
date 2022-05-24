@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Add Dish - Catering Service</title>
+</head>
+<body>
+<h1>Public - Add a dish</h1>
+
+<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
+<form method="POST" th:action="@{/addDish}" th:object="${dish}">
+	<div th:if="${#fields.hasGlobalErrors()}">
+		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+	</div>
+	<p th:text="${uName}">UserName </p>
+	<p th:text="${uName2}">UserName 2</p>
+	<div>
+		<span>Name:</span>
+		<span>
+				<label>
+					<input th:field="*{name}" type="text"/>
+				</label>
+				</span>
+		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+	</div>
+	<div>
+		<span>Description:</span>
+		<span>
+				<label>
+					<input th:field="*{description}" type="text"/>
+				</label>
+			</span>
+		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
+	</div>
+	<p><strong>Select Ingredients(Multiple):</strong>
+		<select id="multiple-ingredients" th:field="*{ingredients}" multiple="multiple">
+
+			<!--/*@thymesVar id="ingredients" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+			<option th:each="ingredient: ${ingredients}"
+					th:value="${name}" th:text="${name}">
+		</select>
+	</p>
+	<input type="submit" value="submit"/>
+	<div>
+		<span><button type="submit">Confirm</button></span>
+	</div>
+</form>
+</body>
+<div th:replace="fragments/components :: footer"></div>
+</html>

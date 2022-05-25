@@ -30,7 +30,7 @@ public class DishCreator {
 
 	@ManyToMany(mappedBy = "dishes")
 	@NotEmpty
-	private List<Ingredient> ingredients;
+	private List<Long> ingredients;
 
 
 }

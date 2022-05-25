@@ -24,14 +24,8 @@ public class Dish {
 	@NotBlank
 	private String description;
 
-	@ManyToMany(mappedBy = "dishes")
+	@ElementCollection
 	@NotEmpty
-	private List<Ingredient> ingredients;
+	private List<Long> ingredients;
 
-	public Dish (DishCreator d){
-		this.id = d.getId();
-		this.name = d.getName();
-		this.description = d.getDescription();
-		this.ingredients = d.getIngredients();
-	}
 }

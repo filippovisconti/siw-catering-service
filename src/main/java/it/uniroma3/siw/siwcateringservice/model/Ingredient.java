@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -24,7 +24,8 @@ public class Ingredient {
 	private String origin;
 	@NotBlank
 	private String description;
-	@ManyToMany
-	private Collection<Dish> dishes;
+
+	@ElementCollection
+	private List<Long> dishesID;
 
 }

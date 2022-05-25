@@ -40,9 +40,9 @@ public class DishController {
 
 	@GetMapping("/dishForm")
 	public String getDishForm(Model model) { // NON FUNZIONA
-		var d = new DishCreator();
+//		var d = new DishCreator();
 		//d.setIngredients(new ArrayList<>(ingredientService.findAll()));
-		model.addAttribute("dish", d);
+		model.addAttribute("dish", new Dish());
 		model.addAttribute("ingredientsList", ingredientService.findAll());
 		//model.addAttribute("ingredientList", new ArrayList<IngredientController>());
 		String nextPage = "dishForm.html";
@@ -50,8 +50,8 @@ public class DishController {
 	}
 
 	@PostMapping("/dish")
-	public String newDish (@Valid @ModelAttribute("dish") DishCreator dishCreator, BindingResult bindingResult, Model model) {
-		var dish = new Dish(dishCreator);
+	public String newDish (@Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResult, Model model) {
+//		var dish = new Dish(dishCreator);
 		this.dishValidator.validate(dish,bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
@@ -59,8 +59,10 @@ public class DishController {
 			var d = this.dishService.findById(dish.getId());
 			model.addAttribute("dish", d);
 			nextPage = "dish.html";	  // presenta un pagina con la dish appena salvata
-		} else
+		} else {
+			model.addAttribute("ingredientsList", ingredientService.findAll());
 			nextPage = "dishForm.html"; // ci sono errori, torna alla form iniziale
+		}
 		return nextPage;
 	}
 

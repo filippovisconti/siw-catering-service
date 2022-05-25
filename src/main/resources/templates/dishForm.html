@@ -31,13 +31,15 @@
 			</span>
 		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
 	</div>
-	<p><strong>Select Ingredients (Multiple):</strong>
+	<div><p><strong>Select Ingredients (Multiple):</strong>
 		<select id="multiple-ingredients" th:field="*{ingredients}" multiple="multiple"> <!--th:field="*{ingredients}" -->
 			<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
 			<option th:each="ingredient: ${ingredientsList}"
-					th:value="${ingredient}" th:text="${ingredient.name}">
+					th:value="${ingredient.id}" th:text="${ingredient.name}">
 		</select>
 	</p>
+	</div>
+
 		<!--<input type="submit" value="submit"/>-->
 	<div>
 		<span><button type="submit">Confirm</button></span>

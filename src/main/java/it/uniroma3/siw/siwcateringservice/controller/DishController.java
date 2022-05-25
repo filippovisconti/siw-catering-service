@@ -1,8 +1,6 @@
 package it.uniroma3.siw.siwcateringservice.controller;
 
 import it.uniroma3.siw.siwcateringservice.model.Dish;
-import it.uniroma3.siw.siwcateringservice.model.DishCreator;
-import it.uniroma3.siw.siwcateringservice.model.Ingredient;
 import it.uniroma3.siw.siwcateringservice.service.DishService;
 import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.DishValidator;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,15 +47,13 @@ public class DishController {
 	}
 
 	@PostMapping("/dish")
-	public String newDish (@Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResult, Model model) {
-//		var dish = new Dish(dishCreator);
+	public String newDish (@Valid @ModelAttribute("dish") Dish dish,
+						   BindingResult bindingResult, Model model) {
 		this.dishValidator.validate(dish,bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.dishService.save(dish); // salvo un oggetto Dish
-			var d = this.dishService.findById(dish.getId());
-			model.addAttribute("dish", d);
-			model.addAttribute("dishIngredientsList", ingredientService.findByIds(d.getIngredients()));
+			model.addAttribute("dish", dish);
 			nextPage = "dish.html";	  // presenta un pagina con la dish appena salvata
 		} else {
 			model.addAttribute("ingredientsList", ingredientService.findAll());
@@ -71,7 +66,7 @@ public class DishController {
 	public String getDish(@PathVariable("id") Long id, Model model) {
 		Dish d = this.dishService.findById(id);
 		model.addAttribute("dish", d);
-		model.addAttribute("dishIngredientsList", ingredientService.findByIds(d.getIngredients()));
+		model.addAttribute("dishIngredientsList", d.getIngredients());
 		String nextPage = "dish.html";
 		return nextPage;
 	}

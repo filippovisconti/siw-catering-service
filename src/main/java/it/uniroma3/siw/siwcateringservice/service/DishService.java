@@ -1,6 +1,7 @@
 package it.uniroma3.siw.siwcateringservice.service;
 
 import it.uniroma3.siw.siwcateringservice.model.Dish;
+import it.uniroma3.siw.siwcateringservice.model.Ingredient;
 import it.uniroma3.siw.siwcateringservice.repository.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,13 @@ public class DishService {
 		return null;
 	}
 
+	public List<Dish> findByIds (List<Long> ids) {
+		var i = dishRepository.findAllById(ids);
+		List<Dish> dishList = new ArrayList<>();
+		for(Dish dish : i)
+			dishList.add(dish);
+		return dishList;
+	}
 
 	@Transactional
 	public void save (Dish dish) {

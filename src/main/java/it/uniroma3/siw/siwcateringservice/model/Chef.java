@@ -7,11 +7,17 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
+
+//@Table(uniqueConstraints = {
+//		@UniqueConstraint(
+//				name = "UniqueNameAndNationality",
+//				columnNames = { "firstName", "lastName","nationality" }) })
 public class Chef {
 
 	@Id
@@ -25,6 +31,16 @@ public class Chef {
 	@NotBlank
 	private String nationality;
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "chef")
-	private Collection<Buffet> offeredBuffets;
+	@OneToMany(mappedBy = "chef")
+	private List<Buffet> offeredBuffets;
+
+	/*@ElementCollection
+	@NotEmpty
+	private List<Long> offeredBuffets;
+	 */
+
+	@Override
+	public String toString () {
+		return id + " " + firstName + " " + lastName + ", " + nationality;
+	}
 }

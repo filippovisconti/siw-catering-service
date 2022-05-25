@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Buffet details</title>
+</head>
+<body>
+<div>
+	<h4>Buffet details</h4>
+
+	<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+	<div th:if="${buffet}">
+		<div>
+			<div th:text="${buffet.name}">Tagliatelle di Nonna Pina</div>
+			<div th:text="${buffet.description}">A tasteful buffet made with love</div>
+		</div>
+
+		<div th:text="${buffet.chef}">Carlo Cracco</div>
+		<ul>
+
+			<li th:each="dish : ${buffet.offeredDishes}">
+				<a href="dish.html/0"
+				   th:href="@{'/dish' + '/' + ${dish.id}}"
+				   th:text="${dish.name} + ', ' + ${dish.description}">Pasta al sugo, italian dish</a>
+			</li>
+		</ul>
+	</div>
+
+	<div th:unless="${buffet}">This buffet does not exist.</div>
+
+	<!--<h4>Dettagli persona</h4>
+	<div th:object="${dish}">
+		<span th:text="*{nome}">Paolo</span>
+		<span th:text="*{cognome}">Rossi</span>
+	</div>-->
+
+</div>
+</body>
+<div th:replace="fragments/components :: footer"></div>
+</html>

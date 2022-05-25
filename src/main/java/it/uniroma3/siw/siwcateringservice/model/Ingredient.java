@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Ingredient {
 	@NotBlank
 	private String description;
 
-	@ElementCollection
-	private List<Long> dishesID;
+	/*@ElementCollection
+	private List<xxxx> dishesID;*/
 
 }

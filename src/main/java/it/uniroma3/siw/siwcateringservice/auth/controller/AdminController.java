@@ -13,11 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("private")
 public class AdminController {
 
-	@GetMapping("/add/chef")
-	//@IsAdmin
-	public String addChef(Model model) {
-		model.addAttribute("chef", new Chef());
-		return "addChef";
-	}
 
 }

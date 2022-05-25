@@ -24,8 +24,9 @@ public class Dish {
 	@NotBlank
 	private String description;
 
-	@ElementCollection
+	@ManyToMany
 	@NotEmpty
-	private List<Long> ingredients;
+	private List<Ingredient> ingredients;
+
 
 }

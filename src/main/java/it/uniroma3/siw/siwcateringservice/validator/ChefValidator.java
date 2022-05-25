@@ -20,7 +20,7 @@ public class ChefValidator implements Validator {
 	@Override
 	public void validate (Object target, Errors errors) {
 		if (this.chefService.hasDuplicate((Chef) target)){
-			errors.reject("chef.duplicate");
+			errors.reject("chef.duplicate", "duplicate chef");
 		}
 	}
 

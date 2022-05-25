@@ -7,12 +7,12 @@
 <h1>Public - Add a buffet</h1>
 
 <!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
-<form method="POST" th:action="@{/addBuffet}" th:object="${buffet}">
+<form method="POST" th:action="@{/buffet}" th:object="${buffet}">
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 	</div>
-	<p th:text="${uName}">UserName </p>
-	<p th:text="${uName2}">UserName 2</p>
+	<!--<p th:text="${uName}">UserName </p>
+	<p th:text="${uName2}">UserName 2</p>-->
 	<div>
 		<span>Name:</span>
 		<span>
@@ -32,7 +32,29 @@
 		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
 	</div>
 	<div>
-		<span><button type="submit">Conferma</button></span>
+		<p>Select chef:
+			<select th:field="*{chef}">
+				<option value="">---</option>
+				<!--/*@thymesVar id="chefsList" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+				<option th:each="c : ${chefsList}"
+						th:value="${c.id}"
+						th:text="${c}">Carlo Cracco</option>
+			</select>
+		</p>
+	</div>
+	<div>
+		<p>Select dishes (multiple):
+			<select id="multiple-ingredients" th:field="*{offeredDishes}" multiple="multiple">
+				<!--th:field="*{ingredients}" -->
+				<!--/*@thymesVar id="dishesList" type="java.util.List<Dish>"*/-->
+				<option th:each="dish: ${dishesList}"
+						th:value="${dish.id}"
+						th:text="${dish.name}">
+			</select>
+		</p>
+	</div>
+	<div>
+		<button type="submit">Confirm</button>
 	</div>
 </form>
 </body>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments/components :: baseHead(~{::title})">
+	<title>Buffets list</title>
+</head>
+<body>
+<h4>Buffets list</h4>
+<ul>
+
+	<!--/*@thymesVar id="buffets" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+	<li th:each="buffet : ${buffets}">
+		<a href="buffet.html/0"
+		   th:href="@{'/buffet' + '/' + ${buffet.id}}"
+		   th:text="${buffet.name} + ', ' + ${buffet.description}">Buffet di Nonna Pina, Italy</a>
+
+		<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+		<a href="chef.html/0"
+		   th:href="@{'/chef' + '/' + ${buffet.chef.id}}"
+		   th:text="${buffet.chef.firstName} + ' ' + ${buffet.chef.lastName}">Carlo Cracco</a>
+
+		<br>
+		<form method="POST" th:action="@{'/remove/ask/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
+			<button type="submit">Remove</button>
+		</form>
+	</li>
+</ul>
+</body>
+<div th:replace="fragments/components :: footer"></div>
+</html>
+

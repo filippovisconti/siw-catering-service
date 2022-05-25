@@ -14,7 +14,7 @@
 			<div th:text="${dish.description}">A tasteful dish made with love</div>
 		</div>
 <ul>
-		<li th:each="ingredient : ${dish.ingredients}">
+		<li th:each="ingredient : ${dishIngredientsList}">
 			<a href="ingredient.html/0"
 			   th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
 			   th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>

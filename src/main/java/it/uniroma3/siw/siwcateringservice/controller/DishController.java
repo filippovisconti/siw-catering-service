@@ -58,6 +58,7 @@ public class DishController {
 			this.dishService.save(dish); // salvo un oggetto Dish
 			var d = this.dishService.findById(dish.getId());
 			model.addAttribute("dish", d);
+			model.addAttribute("dishIngredientsList", ingredientService.findByIds(d.getIngredients()));
 			nextPage = "dish.html";	  // presenta un pagina con la dish appena salvata
 		} else {
 			model.addAttribute("ingredientsList", ingredientService.findAll());
@@ -68,7 +69,9 @@ public class DishController {
 
 	@GetMapping("/dish/{id}")
 	public String getDish(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("dish", this.dishService.findById(id));
+		Dish d = this.dishService.findById(id);
+		model.addAttribute("dish", d);
+		model.addAttribute("dishIngredientsList", ingredientService.findByIds(d.getIngredients()));
 		String nextPage = "dish.html";
 		return nextPage;
 	}

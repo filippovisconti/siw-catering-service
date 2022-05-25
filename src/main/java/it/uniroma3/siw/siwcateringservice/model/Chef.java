@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -14,10 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 
-//@Table(uniqueConstraints = {
-//		@UniqueConstraint(
-//				name = "UniqueNameAndNationality",
-//				columnNames = { "firstName", "lastName","nationality" }) })
+@Table(uniqueConstraints = {
+		@UniqueConstraint(
+				name = "UniqueNameAndNationality",
+				columnNames = {"firstName", "lastName", "nationality"})})
 public class Chef {
 
 	@Id

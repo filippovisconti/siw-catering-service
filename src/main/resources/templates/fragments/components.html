@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="baseHead(title)">
 
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
 	<meta charset="UTF-8" />
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-	<link rel="stylesheet" th:href="@{/css/basestyle.css}">
-	<script th:src="@{/js/jquery.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/basestyle.css}" href="../../static/css/basestyle.css">
+	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
 
 	<!-- placeholder for additional links
 	<th:block th:replace="${links}"/>-->
 
 </head>
 
-<body>
+<header>
+	This is the header
+</header>
 
+<body>
+	This will be the body
+	<p>&copy;2022 <a href="http://www.filippovisconti.com">Filippo Visconti</a></p>
 </body>
 
 <footer th:fragment="footer">
-	<p>&copy; 2022 filippovisconti.com</p>
-	<span><a href="/index.html" th:href="@{/}">Home</a></span>
-	<span><a href="/index.html" th:href="@{/logout}">Logout</a></span>
+	<div id="copyright">
+		<p>&copy;2022 <a href="http://www.filippovisconti.com">Filippo Visconti</a></p>
+	</div>
+	<div id="footer-links">
+		<span><a href="/index.html" th:href="@{/}">Home</a> - </span>
+		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout</a></span>
+		<span th:unless="${authenticated}">Not authenticated</span>
+	</div>
+
 </footer>
+
 </html>

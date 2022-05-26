@@ -1,7 +1,6 @@
 package it.uniroma3.siw.siwcateringservice.controller;
 
 import it.uniroma3.siw.siwcateringservice.model.Ingredient;
-import it.uniroma3.siw.siwcateringservice.model.Ingredient;
 import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.IngredientValidator;
 import org.springframework.beans.factory.annotation.Autowired;

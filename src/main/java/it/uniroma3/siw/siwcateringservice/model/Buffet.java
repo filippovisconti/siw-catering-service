@@ -6,8 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -28,13 +26,7 @@ public class Buffet {
 	@ManyToOne
 	private Chef chef;
 
-	@OneToMany
+	@ManyToMany
 	private List<Dish> offeredDishes;
-
-/*	@ElementCollection
-	@NotEmpty
-	private List<Long> offeredDishes;*/
-
-
 
 }

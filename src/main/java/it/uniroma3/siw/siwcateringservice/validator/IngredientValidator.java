@@ -2,7 +2,6 @@ package it.uniroma3.siw.siwcateringservice.validator;
 
 
 import it.uniroma3.siw.siwcateringservice.model.Ingredient;
-import it.uniroma3.siw.siwcateringservice.model.Persona;
 import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

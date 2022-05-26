@@ -1,0 +1,63 @@
+/*Hex Codes: 
+brown #854d27, 
+orange #dd7230, 
+yellow #f4c95d, 
+pale green #d5dddb, 
+black #1a1a1a,
+white #f2f4ef
+off white f2f4f3, #e1e1e1
+*/
+html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #e1e1e1;
+}
+
+header {
+    padding: 2%;
+    text-align: center;
+    background-color: #DCE4E7;
+    min-height: 50px;
+    color: #1a1a1a;
+}
+
+body {
+    height: 100vh;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+
+footer {
+    text-align: center;
+    padding: 2%;
+    margin-top: auto;
+    min-height: 50px;
+    background: #d5dddb;
+    color: #1a1a1a;
+}
+
+footer a:link {
+    color: #854d27;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}

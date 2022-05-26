@@ -1,16 +1,8 @@
 package it.uniroma3.siw.siwcateringservice.auth;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
-import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 //https://www.baeldung.com/spring-security-login
 

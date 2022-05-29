@@ -1,24 +1,68 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head th:replace="fragments/components :: baseHead(~{::title})">
-    <title>Ingredients list</title>
+    <title>Chefs @ Catering Service</title>
+    <link rel="stylesheet" href="../../static/css/basestyle.css">
 </head>
+<header>
+    <h1>Ingredients list</h1>
+</header>
+
 <body>
-<h4>Ingredients list</h4>
-<ul>
+    <table class="greyGridTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Origin</th>
+
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${ingredients.empty}">
+                <td colspan="3"> No Ingredients Available </td>
+            </tr>
+            <!--/*@thymesVar id="ingredients" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+            <tr th:each="ingredient : ${ingredients}">
+                <td>
+                    <a href="ingredient.html/0" th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
+                        th:text="${ingredient.name}">Sugar</a>
+                </td>
+                <td>
+                    <span th:text="${ingredient.origin}">
+                        Italy</span>
+                </td>
+                <td>
+                    <form method="POST" th:action="@{'/remove/ask/ingredient' + '/' + ${ingredient.id}}"
+                        th:object="${ingredient}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 
     <!--/*@thymesVar id="ingredients" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
-    <li th:each="ingredient : ${ingredients}">
-        <a href="ingredient.html/0"
-           th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
-           th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>
-        <br>
-        <form method="POST" th:action="@{'/remove/ask/ingredient' + '/' + ${ingredient.id}}" th:object="${ingredient}">
+    <!--<ul>
+        <li th:each="ingredient : ${ingredients}">
+            <a href="ingredient.html/0" th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
+                th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>
+            <br>
+            <form method="POST" th:action="@{'/remove/ask/ingredient' + '/' + ${ingredient.id}}"
+                th:object="${ingredient}">
                 <button type="submit">Remove</button>
-        </form>
-    </li>
-</ul>
+            </form>
+        </li>
+    </ul>-->
 </body>
-<div th:replace="fragments/components :: footer"></div>
-</html>
+<footer th:replace="fragments/components :: footer">
+    <div id="footer-links">
+        <span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
+        <span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
+        <span th:unless="${authenticated}">Not authenticated</span>
+    </div>
+</footer>
 
+</html>

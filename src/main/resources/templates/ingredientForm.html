@@ -1,48 +1,130 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Add an ingredient</title>
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Add Chef - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
-<body>
-<h1>Add an ingredient</h1>
+<header>
+	<h1 class="header-title">Add an ingredient</h1>
+</header>
 
-<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
-<form method="POST" th:action="@{/ingredient}" th:object="${ingredient}">
-	<div th:if="${#fields.hasGlobalErrors()}">
-		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+<body>
+	<div class="parent">
+
+		<div class="child">
+
+			<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+			<form method="POST" th:action="@{/ingredient}" th:object="${ingredient}">
+				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">this will contain
+						errors
+					</p>
+				</div>
+
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>Name:</td>
+							<td>
+								<label>
+									<input th:field="*{name}" type="text" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+									error name
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Origin:</td>
+							<td>
+								<label>
+									<input th:field="*{origin}" type="text" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{origin}" th:if="${#fields.hasErrors('origin')}">
+									error origin
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td><label>
+									<input th:field="*{description}" type="text" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{description}"
+									th:if="${#fields.hasErrors('description')}">
+									error nationality
+								</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>Picture</td>
+							<td>
+								<input type="file" />
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn-div">
+					<span><button type="submit">Confirm</button></span>
+				</div>
+			</form>
+		</div>
 	</div>
+
+	<!--
 	<div>
 		<span>Name:</span>
 		<span>
-				<label>
-					<input th:field="*{name}" type="text"/>
-				</label>
-				</span>
+			<label>
+				<input th:field="*{name}" type="text" />
+			</label>
+		</span>
 		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
 	</div>
 	<div>
 		<span>Origin:</span>
 		<span>
-				<label>
-					<input th:field="*{origin}" type="text"/>
-				</label>
-			</span>
+			<label>
+				<input th:field="*{origin}" type="text" />
+			</label>
+		</span>
 		<span th:errors="*{origin}" th:if="${#fields.hasErrors('origin')}"></span>
 	</div>
 	<div>
 		<span>Description:</span>
 		<span>
-				<label>
-					<input th:field="*{description}" type="text"/>
-				</label>
-				</span>
+			<label>
+				<input th:field="*{description}" type="text" />
+			</label>
+		</span>
 		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
 	</div>
 	<div>
 		<span><button type="submit">Add</button></span>
 	</div>
-</form>
+-->
+
+
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
+		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
+		<span th:unless="${authenticated}">Not authenticated</span>
+	</div>
+</footer>
+
 </html>

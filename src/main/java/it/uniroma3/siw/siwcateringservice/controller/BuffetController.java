@@ -77,7 +77,7 @@ public class BuffetController {
 	}
 
 	@GetMapping("/editBuffetForm/{id}")
-	public String getBuffetForm(@PathVariable Long id, Model model) { // NON FUNZIONA
+	public String getBuffetForm(@PathVariable Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		model.addAttribute("chefsList", chefService.findAll());
 		model.addAttribute("dishesList", dishService.findAll());

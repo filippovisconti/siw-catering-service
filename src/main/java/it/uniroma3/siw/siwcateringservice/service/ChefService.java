@@ -43,7 +43,7 @@ public class ChefService {
 			return p.get();
 		return null;
 	}
-
+	@Transactional
 	public void deleteChefById (Long id) {
 		chefRepository.deleteById(id);
 	}

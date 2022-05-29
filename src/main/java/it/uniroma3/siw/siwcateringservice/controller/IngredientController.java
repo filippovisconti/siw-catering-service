@@ -5,6 +5,7 @@ import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.IngredientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +51,31 @@ public class IngredientController {
 			nextPage = "ingredientForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
+	@GetMapping("/editIngredientForm/{id}")
+	public String getBuffetForm(@PathVariable Long id, Model model) {
+		model.addAttribute("buffet", ingredientService.findById(id));
+		String nextPage = "editIngredientForm.html";
+		return nextPage;
+	}
 
+	@Transactional
+	@PostMapping("/edit/ingredient/{id}")
+	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResults, Model model) {
+		String nextPage;
+		if(!bindingResults.hasErrors()) {
+			Ingredient oldIngredient = ingredientService.findById(id);
+			oldIngredient.setId(ingredient.getId());
+			oldIngredient.setName(ingredient.getName());
+			oldIngredient.setDescription(ingredient.getDescription());
+			oldIngredient.setOrigin(ingredient.getOrigin());
+			this.ingredientService.save(oldIngredient);
+			model.addAttribute("ingredient", ingredient);
+			nextPage = "ingredient.html";
+		} else {
+			nextPage = "editIngredientForm.html";
+		}
+		return nextPage;
+	}
 	@GetMapping("/ingredient/{id}")
 	public String getIngredient(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ingredient", this.ingredientService.findById(id));
@@ -67,8 +92,12 @@ public class IngredientController {
 
 	@PostMapping("/remove/confirm/ingredient/{id}")
 	public String confirmRemoveIngredientById(@PathVariable("id") Long id, Model model) {
-		this.ingredientService.deleteIngredientById(id);
 		String nextPage = "success.html";
+		try {
+			this.ingredientService.deleteIngredientById(id);
+		} catch (Exception e){
+			nextPage = "error.html";
+		}
 		return nextPage;
 	}
 }

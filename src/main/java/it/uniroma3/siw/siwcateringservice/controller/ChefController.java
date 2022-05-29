@@ -1,11 +1,13 @@
 package it.uniroma3.siw.siwcateringservice.controller;
 
+import it.uniroma3.siw.siwcateringservice.model.Buffet;
 import it.uniroma3.siw.siwcateringservice.model.Chef;
 import it.uniroma3.siw.siwcateringservice.service.ChefService;
 import it.uniroma3.siw.siwcateringservice.service.DishService;
 import it.uniroma3.siw.siwcateringservice.validator.ChefValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +56,32 @@ public class ChefController {
 			nextPage = "chefForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
+	@GetMapping("/editChefForm/{id}")
+	public String getChefForm(@PathVariable Long id, Model model) { // NON FUNZIONA
+		model.addAttribute("chef", chefService.findById(id));
+		String nextPage = "editChefForm.html";
+		return nextPage;
+	}
 
+	@Transactional
+	@PostMapping("/edit/chef/{id}")
+	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
+		String nextPage;
+		if(!bindingResults.hasErrors()) {
+			Chef oldChef = chefService.findById(id);
+			oldChef.setId(chef.getId());
+			oldChef.setFirstName(chef.getFirstName());
+			oldChef.setLastName(chef.getLastName());
+			oldChef.setNationality(chef.getNationality());
+
+			this.chefService.save(oldChef);
+			model.addAttribute("chef", chef);
+			nextPage = "chef.html";
+		} else {
+			nextPage = "editChefForm.html";
+		}
+		return nextPage;
+	}
 	@GetMapping("/chef/{id}")
 	public String getChef(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", this.chefService.findById(id));
@@ -71,8 +98,12 @@ public class ChefController {
 
 	@PostMapping("/remove/confirm/chef/{id}")
 	public String confirmRemoveChefById(@PathVariable("id") Long id, Model model) {
-		this.chefService.deleteChefById(id);
 		String nextPage = "success.html";
+		try {
+			this.chefService.deleteChefById(id);
+		} catch (Exception e){
+			nextPage = "error.html";
+		}
 		return nextPage;
 	}
 }

@@ -46,7 +46,7 @@ public class BuffetService {
 			return p.get();
 		return null;
 	}
-
+	@Transactional
 	public void deleteBuffetById (Long id) {
 		buffetRepository.deleteById(id);
 	}

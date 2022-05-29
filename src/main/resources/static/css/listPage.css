@@ -20,6 +20,16 @@ off white f2f4f3, #e1e1e1
     cursor: pointer;
 }
 
+.welcome-text {
+    text-align: center;
+    padding: 2%;
+}
+
+.center-text {
+    text-align: center;
+
+}
+
 .button1 {
     background-color: white;
     color: black;

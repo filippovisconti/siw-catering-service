@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
 	<title>Ingredient details</title>
-	<link rel="stylesheet" href="../../static/css/basestyle.css">
-	<link rel="stylesheet" href="../../static/css/detailPage.css">
+	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
 
 <header>
@@ -26,7 +26,8 @@
 			</div>
 		</div>
 		<div class="child">
-			<img class="profile-pic" src="../static/images/farina.jpeg" alt="ingredient picture">
+			<img class="profile-pic" th:src="@{/images/farina.jpeg}" src="../static/images/farina.jpeg"
+				alt="ingredient picture">
 		</div>
 
 		<!-- <div class="child" th:unless="${ingredient}">This ingredient does not exist.</div>-->

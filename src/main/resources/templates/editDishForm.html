@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
-	<title>Add Dish - Catering Service</title>
+	<title>Edit Dish - Catering Service</title>
 	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
 	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
 <header>
-	<h1 class="header-title">Add a dish</h1>
+	<h1 class="header-title">Edit this dish</h1>
 </header>
 
 <body>
 	<div class="parent">
 
 		<div class="child">
-
 			<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-			<form method="POST" th:action="@{/dish}" th:object="${dish}">
+			<form method="POST" th:action="@{/edit/dish/{id}(id=${dish.id})}" th:object="${dish}">
 				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>
+
 				<table class="greyGridTable">
 					<tbody>
 						<tr>
@@ -48,6 +48,16 @@
 									error description</span>
 							</td>
 						</tr>
+						<tr>
+							<td>Chef:</td>
+							<td><select th:field="*{chef}">
+									<option value="">---</option>
+									<!--/*@thymesVar id="chefsList" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+									<option th:each="c : ${chefsList}" th:value="${c.id}" th:text="${c}">Carlo Cracco
+									</option>
+								</select>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 
@@ -60,7 +70,7 @@
 						<div th:each="ingredient: ${ingredientsList}">
 							<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}" name="ingredient"
 								th:value="${ingredient.id}">
-							<label for="${ingredientsList}" th:text="${ingredient.name}">Nome ingredient</label>
+							<label for="${ingredientsList}" th:text="${ingredient.name}">Ingredient name</label>
 						</div>
 					</fieldset>
 				</div>
@@ -77,5 +87,6 @@
 		<a href="/index.html" th:href="@{/logout}">Logout </a>
 	</div>
 </footer>
+
 
 </html>

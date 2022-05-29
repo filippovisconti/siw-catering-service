@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHead(~{::title})">
-    <title>Catering Service - Home Page</title>
-    <link rel="stylesheet" href="../../static/css/basestyle.css">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
+    <title>Public Home Page - Catering Service </title>
+    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
+
 </head>
+<header>
+    <h1 class="header-title">Catering Service</h1>
+</header>
 
 <body>
-    <div>[DEBUG]index.html</div>
-    <h2>Welcome to the Catering Service.</h2>
 
-    <!--<div><a href="/index.html" th:href="@{/public/add/buffet}">add buffet public</a></div>
-<div><a href="/index.html" th:href="@{/private/add/chef}">add chef private</a></div>-->
-    <div><a href="/ingredients" th:href="@{/ingredients}">Administration</a></div>
-    <div><a href="/ingredientsForm" th:href="@{/ingredientForm}">View buffets and details</a></div>
+    <div class="center-text">[DEBUG]index.html</div> <!-- TODO remove this -->
 
+    <h2 class="welcome-text">Welcome to the public interface of the Catering Service.</h2>
+
+    <table class="greyGridTable">
+        <tbody>
+            <tr>
+                <td><a class="button button1" href="/ingredients" th:href="@{/ingredients}">Administration</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a class="button button2" href="/ingredientsForm" th:href="@{/ingredientForm}">View buffets and
+                        details</a></td>
+            </tr>
+
+        </tbody>
+    </table>
 
 </body>
 <footer th:replace="fragments/components :: footer">

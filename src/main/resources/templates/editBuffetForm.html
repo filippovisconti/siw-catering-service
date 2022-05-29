@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
 	<title>Edit Buffet - Catering Service</title>
-	<link rel="stylesheet" href="../../static/css/basestyle.css">
-	<link rel="stylesheet" href="../../static/css/detailPage.css">
+	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
 <header>
 	<h1 class="header-title">Edit this buffet</h1>
@@ -57,9 +57,7 @@
 									</option>
 								</select>
 							</td>
-							<td><span class="error-text" th:errors="*{nationality}"
-									th:if="${#fields.hasErrors('nationality')}">error
-									nationality</span></td>
+
 						</tr>
 					</tbody>
 				</table>
@@ -72,7 +70,7 @@
 						<div th:each="dish: ${dishesList}">
 							<input type="checkbox" id="${dishesList}" th:field="*{offeredDishes}" name="dish"
 								th:value="${dish.id}">
-							<label for="${dishesList}" th:text="${dish.name}">Nome ingredient</label>
+							<label for="${dishesList}" th:text="${dish.name}">Dish name</label>
 						</div>
 					</fieldset>
 				</div>

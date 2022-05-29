@@ -3,7 +3,7 @@
 
 <head th:replace="fragments/components :: baseHead(~{::title})">
     <title>Chefs @ Catering Service</title>
-    <link rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
 </head>
 <header>
     <h1>Chefs list</h1>

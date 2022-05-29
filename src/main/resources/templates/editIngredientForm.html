@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
-	<title>Add Dish - Catering Service</title>
+	<title>Edit Ingredient - Catering Service</title>
 	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
 	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
 <header>
-	<h1 class="header-title">Add a dish</h1>
+	<h1 class="header-title">Edit this ingredient</h1>
 </header>
 
 <body>
 	<div class="parent">
 
 		<div class="child">
-
-			<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-			<form method="POST" th:action="@{/dish}" th:object="${dish}">
+			<!--/*@thymesVar id="ingredient" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
+			<form method="POST" th:action="@{/edit/ingredient/{id}(id=${ingredient.id})}" th:object="${ingredient}">
 				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>
+
 				<table class="greyGridTable">
 					<tbody>
 						<tr>
@@ -36,34 +36,33 @@
 							</td>
 						</tr>
 						<tr>
-							<td>Description:</td>
+							<td>Origin:</td>
 							<td>
 								<label>
+									<input th:field="*{origin}" type="text" th:value="*{origin}" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{origin}" th:if="${#fields.hasErrors('origin')}">
+									error origin
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td><label>
 									<input th:field="*{description}" type="text" th:value="*{description}" />
 								</label>
 							</td>
 							<td>
 								<span class="error-text" th:errors="*{description}"
 									th:if="${#fields.hasErrors('description')}">
-									error description</span>
+									error nationality
+								</span>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-
-
-				<div>
-					<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
-					<fieldset>
-						<legend>Select Ingredients</legend>
-						<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
-						<div th:each="ingredient: ${ingredientsList}">
-							<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}" name="ingredient"
-								th:value="${ingredient.id}">
-							<label for="${ingredientsList}" th:text="${ingredient.name}">Nome ingredient</label>
-						</div>
-					</fieldset>
-				</div>
 				<div class="btn-div">
 					<span><button type="submit">Confirm</button></span>
 				</div>
@@ -77,5 +76,6 @@
 		<a href="/index.html" th:href="@{/logout}">Logout </a>
 	</div>
 </footer>
+
 
 </html>

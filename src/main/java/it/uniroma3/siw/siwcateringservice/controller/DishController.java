@@ -6,6 +6,7 @@ import it.uniroma3.siw.siwcateringservice.service.IngredientService;
 import it.uniroma3.siw.siwcateringservice.validator.DishValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,6 +63,32 @@ public class DishController {
 		return nextPage;
 	}
 
+	@GetMapping("/editDishForm/{id}")
+	public String getDishForm(@PathVariable Long id, Model model) {
+		model.addAttribute("dish", dishService.findById(id));
+		String nextPage = "editDishForm.html";
+		return nextPage;
+	}
+
+	@Transactional
+	@PostMapping("/edit/dish/{id}")
+	public String editDish(@PathVariable Long id, @Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResults, Model model) {
+		String nextPage;
+		if(!bindingResults.hasErrors()) {
+			Dish oldDish = dishService.findById(id);
+			oldDish.setId(dish.getId());
+			oldDish.setName(dish.getName());
+			oldDish.setDescription(dish.getDescription());
+			this.dishService.save(oldDish);
+			model.addAttribute("dish", dish);
+			nextPage = "dish.html";
+		} else {
+			model.addAttribute("ingredientsList", ingredientService.findAll());
+			nextPage = "editDishForm.html";
+		}
+		return nextPage;
+	}
+
 	@GetMapping("/dish/{id}")
 	public String getDish(@PathVariable("id") Long id, Model model) {
 		Dish d = this.dishService.findById(id);
@@ -80,8 +107,12 @@ public class DishController {
 
 	@PostMapping("/remove/confirm/dish/{id}")
 	public String confirmRemoveDishById(@PathVariable("id") Long id, Model model) {
-		this.dishService.deleteDishById(id);
 		String nextPage = "success.html";
+		try {
+			this.dishService.deleteDishById(id);
+		} catch (Exception e){
+			nextPage = "error.html";
+		}
 		return nextPage;
 	}
 }

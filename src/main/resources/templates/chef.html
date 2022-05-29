@@ -34,22 +34,15 @@
 		</div>
 		<!--<div class="child" th:unless="${chef}">This chef does not exist.</div>-->
 
-		<!--<h4>Dettagli persona</h4>
-	<div th:object="${ingredient}">
-		<span th:text="*{nome}">Paolo</span>
-		<span th:text="*{cognome}">Rossi</span>
-	</div>-->
-
-
 	</div>
 </body>
 
 <footer th:replace="fragments/components :: footer">
 	<div id="footer-links">
-		<span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
-		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
-		<span th:unless="${authenticated}">Not authenticated</span>
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
 	</div>
 </footer>
+
 
 </html>

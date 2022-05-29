@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Confirm removal</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Confirm Buffet Removal - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/confirmPage.css">
+
 </head>
+<header>
+	<h1 class="header-title">Are you sure you want to remove this?</h1>
+</header>
+
 <body>
-<div>
-	<h4>Are you sure you want to remove this?</h4>
 
-	<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
-	<div th:text="'Remove ' + ${buffet.name}">Remove buffet number 1</div>
+	<div class="parentCol, error-text">
+		<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
 
-	<form method="POST" th:action="@{'/remove/confirm/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
-		<span><button type="submit">Confirm</button></span>
-	</form>
-	<a href="error.html"
-	   th:href="@{'/buffets'}"
-	   th:text="Cancel">Cancel</a>
+		<div class="childCol" th:text="'You are about to remove: ' + ${buffet.name}">You are about to remove:
+			aTastyBuffet</div>
 
-</div>
+		<table class="greyGridTable">
+			<tbody>
+				<tr>
+					<td>
+						<form method="POST" th:action="@{'/remove/confirm/buffet' + '/' + ${buffet.id}}"
+							th:object="${buffet}">
+
+							<button class="button button1" type="submit">Confirm</button>
+						</form>
+					</td>
+					<td>
+						<a class="button button2" href="error.html" th:href="@{'/buffets'}" th:text="Cancel">Cancel</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
 </body>
-<div th:replace="fragments/components :: footer"></div>
-</html>
 
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
+</html>

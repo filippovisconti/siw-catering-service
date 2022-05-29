@@ -1,32 +1,81 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Buffets list</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Confirm Buffet Removal - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/confirmPage.css">
+
 </head>
+<header>
+	<h1>Buffets list</h1>
+</header>
+
 <body>
-<h4>Buffets list</h4>
-<ul>
+	<table class="greyGridTable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Chef</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${buffets.empty}">
+				<td colspan="3"> No Buffets Available </td>
+			</tr>
+			<!--/*@thymesVar id="chefs" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+			<tr th:each="buffet : ${buffets}">
+				<td>
+					<a href="buffet.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.name}">Buffet
+						di Nonna Pina</a>
+				</td>
 
-	<!--/*@thymesVar id="buffets" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
-	<li th:each="buffet : ${buffets}">
-		<a href="buffet.html/0"
-		   th:href="@{'/buffet' + '/' + ${buffet.id}}"
-		   th:text="${buffet.name} + ', ' + ${buffet.description}">Buffet di Nonna Pina, Italy</a>
+				<td>
+					<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+					<a href="chef.html/0" th:href="@{'/chef' + '/' + ${buffet.chef.id}}"
+						th:text="${buffet.chef.firstName} + ' ' + ${buffet.chef.lastName}">Carlo Cracco</a>
+				</td>
 
-		<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
-		<a href="chef.html/0"
-		   th:href="@{'/chef' + '/' + ${buffet.chef.id}}"
-		   th:text="${buffet.chef.firstName} + ' ' + ${buffet.chef.lastName}">Carlo Cracco</a>
+				<td>
+					<form method="POST" th:action="@{'/remove/ask/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
+						<button class="button button2" type="submit">Remove</button>
+						<a class="button button2" href="chef.html/0"
+							th:href="@{'/editBuffetForm' + '/' + ${buffet.id}}">Edit</a>
+					</form>
 
-		<br>
-		<form method="POST" th:action="@{'/remove/ask/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
-			<button type="submit">Remove</button>
-		</form>
-		<a href="chef.html/0"
-		   th:href="@{'/editBuffetForm' + '/' + ${buffet.id}}">Edit</a>
-	</li>
-</ul>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+
+	<ul>
+
+		<!--/*@thymesVar id="buffets" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+		<li th:each="buffet : ${buffets}">
+			<a href="buffet.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
+				th:text="${buffet.name} + ', ' + ${buffet.description}">Buffet di Nonna Pina, Italy</a>
+
+			<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+			<a href="chef.html/0" th:href="@{'/chef' + '/' + ${buffet.chef.id}}"
+				th:text="${buffet.chef.firstName} + ' ' + ${buffet.chef.lastName}">Carlo Cracco</a>
+
+			<br>
+			<form method="POST" th:action="@{'/remove/ask/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
+				<button type="submit">Remove</button>
+			</form>
+			<a href="chef.html/0" th:href="@{'/editBuffetForm' + '/' + ${buffet.id}}">Edit</a>
+		</li>
+	</ul>
 </body>
-<div th:replace="fragments/components :: footer"></div>
-</html>
 
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
+</html>

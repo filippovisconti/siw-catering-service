@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Catering Service</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Public Home Page - Catering Service </title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/confirmPage.css">
+
 </head>
+<header>
+	<h1 class="header-title">Catering Service</h1>
+</header>
+
 <body>
 
-<div>[DEBUG]public_index.html</div> <!-- TODO remove this -->
+	<div>[DEBUG]public_index.html</div> <!-- TODO remove this -->
 
-<h2>Hello World, and Welcome to the public interface of the Catering Service.</h2>
+	<h2>Welcome to the public interface of the Catering Service.</h2>
 
-<div>
-	<a href="/ingredients" th:href="@{/ingredients}"> show all ingredients </a><br>
-	<a href="/ingredientsForm" th:href="@{/ingredientForm}"> add ingredient </a>
-</div>
-<br>
+	<div>
+		<a href="/ingredients" th:href="@{/ingredients}"> show all ingredients </a><br>
+		<a href="/ingredientsForm" th:href="@{/ingredientForm}"> add ingredient </a>
+	</div>
+	<br>
 
-<div>
-	<a href="/ingredients" th:href="@{/dishes}"> show all dishes </a><br>
-	<a href="/ingredientsForm" th:href="@{/dishForm}"> add dish </a>
-</div>
-<br>
+	<div>
+		<a href="/ingredients" th:href="@{/dishes}"> show all dishes </a><br>
+		<a href="/ingredientsForm" th:href="@{/dishForm}"> add dish </a>
+	</div>
+	<br>
 
-<div>
-	<a href="/ingredients" th:href="@{/chefs}"> show all chefs </a><br>
-	<a href="/ingredientsForm" th:href="@{/chefForm}"> add chef </a>
-</div>
-<br>
+	<div>
+		<a href="/ingredients" th:href="@{/chefs}"> show all chefs </a><br>
+		<a href="/ingredientsForm" th:href="@{/chefForm}"> add chef </a>
+	</div>
+	<br>
 
-<div>
-	<a href="/ingredients" th:href="@{/buffets}"> show all buffets </a><br>
-	<a href="/ingredientsForm" th:href="@{/buffetForm}"> add buffet </a>
-</div>
+	<div>
+		<a href="/ingredients" th:href="@{/buffets}"> show all buffets </a><br>
+		<a href="/ingredientsForm" th:href="@{/buffetForm}"> add buffet </a>
+	</div>
 
 
 </body>
-<div th:replace="fragments/components :: footer"></div>
+
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
 </html>
-
-
-<!--<div><a href="/index.html" th:href="@{/public/add/buffet}">add buffet public</a></div>
-<div><a href="/index.html" th:href="@{/private/add/chef}">add chef private</a></div>-->

@@ -19,9 +19,8 @@
 </body>
 <footer th:replace="fragments/components :: footer">
     <div id="footer-links">
-        <span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
-        <span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
-        <span th:unless="${authenticated}">Not authenticated</span>
+        <span><a href="/index.html">HomeTEST</a> - </span>
+        <a href="/index.html" th:href="@{/logout}">Logout </a>
     </div>
 </footer>
 

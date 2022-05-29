@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
 	<title>Success</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/confirmPage.css">
+
 </head>
+<header>
+	<h1 class="header-title">It's all good :)</h1>
+</header>
+
 <body>
-<div>
-	<h1>Everything went smoothly.</h1>
-</div>
+	<div class="parentCol">
+		<div class="childCol">Everything went smoothly.</div>
+	</div>
+
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
 </html>

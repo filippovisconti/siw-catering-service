@@ -17,9 +17,7 @@
 			<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef" */-->
 			<form method="POST" th:action="@{/chef}" th:object="${chef}">
 				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
-					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">this will contain
-						errors
-					</p>
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>
 
 				<table class="greyGridTable">
@@ -58,6 +56,7 @@
 						</tr>
 					</tbody>
 				</table>
+
 				<table class="greyGridTable">
 					<tbody>
 						<tr>
@@ -69,43 +68,42 @@
 						</tr>
 					</tbody>
 				</table>
+
 				<div class="btn-div">
 					<span><button type="submit">Confirm</button></span>
 				</div>
 		</div>
-
-		<!-- <div>
-				<span>First name:</span>
-				<span>
-					<label>
-						<input th:field="*{firstName}" type="text" />
-					</label>
-				</span>
-
-			</div>
-			<div>
-				<span>Last name:</span>
-				<span>
-					<label>
-						<input th:field="*{lastName}" type="text" />
-					</label>
-				</span>
-				<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
-			</div>
-
-			<div>
-				<span>Nationality:</span>
-				<span>
-					<label>
-						<input th:field="*{nationality}" type="text" />
-					</label>
-				</span>
-				<span th:errors="*{nationality}" th:if="${#fields.hasErrors('nationality')}"></span>
-			</div>-->
-
-
 		</form>
 	</div>
+	<!-- <div>
+		<span>First name:</span>
+		<span>
+			<label>
+				<input th:field="*{firstName}" type="text" />
+			</label>
+		</span>
+
+	</div>
+	<div>
+		<span>Last name:</span>
+		<span>
+			<label>
+				<input th:field="*{lastName}" type="text" />
+			</label>
+		</span>
+		<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
+	</div>
+
+	<div>
+		<span>Nationality:</span>
+		<span>
+			<label>
+				<input th:field="*{nationality}" type="text" />
+			</label>
+		</span>
+		<span th:errors="*{nationality}" th:if="${#fields.hasErrors('nationality')}"></span>
+	</div>-->
+
 </body>
 <footer th:replace="fragments/components :: footer">
 	<div id="footer-links">

@@ -1,62 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Add Buffet - Catering Service</title>
-</head>
-<body>
-<h1>Public - Add a buffet</h1>
 
-<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
-<form method="POST" th:action="@{/edit/buffet/{id}(id=${buffet.id})}" th:object="${buffet}">
-	<div th:if="${#fields.hasGlobalErrors()}">
-		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Edit Buffet - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
+</head>
+<header>
+	<h1 class="header-title">Edit this buffet</h1>
+</header>
+
+<body>
+	<div class="parent">
+
+		<div class="child">
+			<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+			<form method="POST" th:action="@{/edit/buffet/{id}(id=${buffet.id})}" th:object="${buffet}">
+				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
+				</div>
+
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>Name:</td>
+							<td>
+								<label>
+									<input th:field="*{name}" type="text" th:value="*{name}" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+									error name
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td>
+								<label>
+									<input th:field="*{name}" type="text" th:value="*{name}" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{description}"
+									th:if="${#fields.hasErrors('description')}">
+									error description</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Chef:</td>
+							<td><select th:field="*{chef}">
+									<option value="">---</option>
+									<!--/*@thymesVar id="chefsList" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+									<option th:each="c : ${chefsList}" th:value="${c.id}" th:text="${c}">Carlo Cracco
+									</option>
+								</select>
+							</td>
+							<td><span class="error-text" th:errors="*{nationality}"
+									th:if="${#fields.hasErrors('nationality')}">error
+									nationality</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<div>
+					<!--/*@thymesVar id="dishesList" type="java.util.List<Dish>"*/-->
+					<fieldset>
+						<legend>Select dishes</legend>
+						<div th:each="dish: ${dishesList}">
+							<input type="checkbox" id="${dishesList}" th:field="*{offeredDishes}" name="dish"
+								th:value="${dish.id}">
+							<label for="${dishesList}" th:text="${dish.name}">Nome ingredient</label>
+						</div>
+					</fieldset>
+				</div>
+				<div class="btn-div">
+					<span><button type="submit">Confirm</button></span>
+				</div>
+			</form>
+		</div>
 	</div>
-	<!--<p th:text="${uName}">UserName </p>
-	<p th:text="${uName2}">UserName 2</p>-->
-	<div>
-		<span>Name:</span>
-		<span>
-				<label>
-					<input th:field="*{name}" type="text" th:value="*{name}"/>
-				</label>
-				</span>
-		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
-	</div>
-	<div>
-		<span>Description:</span>
-		<span>
-				<label>
-					<input th:field="*{description}" type="text" th:value="*{description}"/>
-				</label>
-			</span>
-		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
-	</div>
-	<div>
-		<p>Select chef:
-			<select th:field="*{chef}">
-				<option value="">---</option>
-				<!--/*@thymesVar id="chefsList" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-				<option th:each="c : ${chefsList}"
-						th:value="${c.id}"
-						th:text="${c}">Carlo Cracco
-				</option>
-			</select>
-		</p>
-	</div>
-	<div>
-		<!--/*@thymesVar id="dishesList" type="java.util.List<Dish>"*/-->
-		<fieldset>
-			<legend>Select dishes</legend>
-			<div  th:each="dish: ${dishesList}">
-				<input type="checkbox" id="${dishesList}" th:field="*{offeredDishes}" name="dish" th:value="${dish.id}" >
-				<label for="${dishesList}" th:text="${dish.name}">Nome ingredient</label>
-			</div>
-		</fieldset>
-	</div>
-	<div>
-		<button type="submit">Confirm</button>
-	</div>
-</form>
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
+
 </html>

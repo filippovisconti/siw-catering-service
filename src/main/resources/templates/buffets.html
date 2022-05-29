@@ -2,9 +2,9 @@
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
-	<title>Confirm Buffet Removal - Catering Service</title>
+	<title>Buffets @ Catering Service</title>
 	<link rel="stylesheet" href="../../static/css/basestyle.css">
-	<link rel="stylesheet" href="../../static/css/confirmPage.css">
+	<link rel="stylesheet" href="../../static/css/listPage.css">
 
 </head>
 <header>
@@ -24,7 +24,7 @@
 			<tr th:if="${buffets.empty}">
 				<td colspan="3"> No Buffets Available </td>
 			</tr>
-			<!--/*@thymesVar id="chefs" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+
 			<tr th:each="buffet : ${buffets}">
 				<td>
 					<a href="buffet.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.name}">Buffet
@@ -49,6 +49,7 @@
 
 		</tbody>
 	</table>
+
 
 </body>
 

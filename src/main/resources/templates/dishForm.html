@@ -1,52 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
 	<title>Add Dish - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
+<header>
+	<h1 class="header-title">Add a dish</h1>
+</header>
+
 <body>
-<h1>Public - Add a dish</h1>
+	<div class="parent">
 
-<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-<form method="POST" th:action="@{/dish}" th:object="${dish}">
-	<div th:if="${#fields.hasGlobalErrors()}">
-		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-	</div>
-	<!--<p th:text="${uName}">UserName </p>
-	<p th:text="${uName2}">UserName 2</p>-->
-	<div>
-		<span>Name:</span>
-		<span>
-				<label>
-					<input th:field="*{name}" type="text"/>
-				</label>
-				</span>
-		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
-	</div>
-	<div>
-		<span>Description:</span>
-		<span>
-				<label>
-					<input th:field="*{description}" type="text"/>
-				</label>
-			</span>
-		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
-	</div>
-	<div>
+		<div class="child">
 
-		<fieldset>
-			<legend>Select Ingredients</legend>
-			<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
-			<div th:each="ingredient: ${ingredientsList}">
-				<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}" name="ingredient" th:value="${ingredient.id}" >
-				<label for="${ingredientsList}" th:text="${ingredient.name}">Nome ingredient</label>
-			</div>
-		</fieldset>
-	</div>
+			<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
+			<form method="POST" th:action="@{/dish}" th:object="${dish}">
+				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
+				</div>
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>Name:</td>
+							<td>
+								<label>
+									<input th:field="*{name}" type="text" th:value="*{name}" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+									error name
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td>
+								<label>
+									<input th:field="*{description}" type="text" th:value="*{description}" />
+								</label>
+							</td>
+							<td>
+								<span class="error-text" th:errors="*{description}"
+									th:if="${#fields.hasErrors('description')}">
+									error description</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-	<div>
-		<span><button type="submit">Confirm</button></span>
+
+				<div>
+					<!--/*@thymesVar id="dishesList" type="java.util.List<Dish>"*/-->
+					<fieldset>
+						<legend>Select Ingredients</legend>
+						<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
+						<div th:each="ingredient: ${ingredientsList}">
+							<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}" name="ingredient"
+								th:value="${ingredient.id}">
+							<label for="${ingredientsList}" th:text="${ingredient.name}">Nome ingredient</label>
+						</div>
+					</fieldset>
+				</div>
+				<div class="btn-div">
+					<span><button type="submit">Confirm</button></span>
+				</div>
+			</form>
+		</div>
 	</div>
-</form>
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
 </html>

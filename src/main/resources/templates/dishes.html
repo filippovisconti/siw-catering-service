@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-    <title>Dishes list</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+    <title>Dishes @ Catering Service</title>
+    <link rel="stylesheet" href="../../static/css/basestyle.css">
+
 </head>
+<header>
+    <h1>Dishes list</h1>
+</header>
+
 <body>
-<h4>Dishes list</h4>
-<ul>
+    <table class="greyGridTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${dishes.empty}">
+                <td colspan="3"> No Buffets Available </td>
+            </tr>
+            <tr th:each="dish : ${dishes}">
+                <td>
+                    <a href="dish.html/0" th:href="@{'/dish' + '/' + ${dish.id}}" th:text="${dish.name}">Tagliatelle di
+                        Nonna Pina</a>
+                </td>
 
-    <!--/*@thymesVar id="dishes" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-    <li th:each="dish : ${dishes}">
-        <a href="dish.html/0"
-           th:href="@{'/dish' + '/' + ${dish.id}}"
-           th:text="${dish.name} + ', ' + ${dish.description}">Tagliatelle di Nonna Pina, Italy</a>
+                <td>
+                    <span th:text="${dish.description}">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. </span>
+                </td>
 
-        <br>
-        <form method="POST" th:action="@{'/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
-                <button type="submit">Remove</button>
-        </form>
-    </li>
-</ul>
+                <td>
+                    <form method="POST" th:action="@{'/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
+                        <button class="button button2" type="submit">Remove</button>
+                    </form>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </body>
-<div th:replace="fragments/components :: footer"></div>
-</html>
+<footer th:replace="fragments/components :: footer">
+    <div id="footer-links">
+        <span><a href="/index.html">HomeTEST</a> - </span>
+        <a href="/index.html" th:href="@{/logout}">Logout </a>
+    </div>
+</footer>
 
+</html>

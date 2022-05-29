@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Dish details</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Buffet details</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
+
+<header>
+	<h1 class="header-title">Dish details</h1>
+</header>
+
 <body>
-<div>
-	<h4>Dish details</h4>
-
-	<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-	<div th:if="${dish}">
-		<div>
-			<div th:text="${dish.name}">Tagliatelle di Nonna Pina</div>
-			<div th:text="${dish.description}">A tasteful dish made with love</div>
+	<div class="parent">
+		<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
+		<div class="child, descr" th:if="${dish}">
+			<div>
+				<h1 th:text="${dish.name}">Tagliatelle di Nonna Pina</h1>
+				<div th:text="${dish.description}">A tasteful dish made with love</div>
+			</div>
+			<ul>
+				<li th:each="ingredient : ${dish.ingredients}">
+					<a href="ingredient.html/0" th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
+						th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>
+				</li>
+			</ul>
 		</div>
-		<ul>
-			<li th:each="ingredient : ${dish.ingredients}">
-				<a href="ingredient.html/0"
-				   th:href="@{'/ingredient' + '/' + ${ingredient.id}}"
-				   th:text="${ingredient.name} + ', ' + ${ingredient.origin}">Sugar, Mexico</a>
-			</li>
-		</ul>
+
+		<div class="child">
+			<img class="profile-pic" src="../static/images/pasta.jpeg" alt="dish picture">
+		</div>
+
+		<!--<div th:unless="${dish}">This dish does not exist.</div>-->
+
 	</div>
-
-	<div th:unless="${dish}">This dish does not exist.</div>
-
-	<!--<h4>Dettagli persona</h4>
-	<div th:object="${ingredient}">
-		<span th:text="*{nome}">Paolo</span>
-		<span th:text="*{cognome}">Rossi</span>
-	</div>-->
-
-
-</div>
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html">HomeTEST</a> - </span>
+		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	</div>
+</footer>
+
 </html>

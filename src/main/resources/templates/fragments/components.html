@@ -15,13 +15,26 @@
 
 </head>
 
+<head th:fragment="baseHeadLinks(title, links)">
+
+	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
+	<meta charset="UTF-8" />
+	<!-- default styles and scripts -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<link rel="stylesheet" th:href="@{/css/basestyle.css}" href="../../static/css/basestyle.css">
+	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
+
+	<th:block th:replace="${links}"/>
+
+</head>
+
 <header>
 	This is the header
 </header>
 
 <body>
 	This will be the body
-	<p>&copy;2022 <a href="http://www.filippovisconti.com">Filippo Visconti</a></p>
+	<p>Some text with a <a href="http://www.filippovisconti.com">link</a>.</p>
 </body>
 
 <footer th:fragment="footer">

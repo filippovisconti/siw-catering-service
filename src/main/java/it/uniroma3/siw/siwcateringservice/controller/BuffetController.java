@@ -7,6 +7,7 @@ import it.uniroma3.siw.siwcateringservice.service.DishService;
 import it.uniroma3.siw.siwcateringservice.validator.BuffetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,12 +72,38 @@ public class BuffetController {
 		Buffet d = this.buffetService.findById(id);
 		model.addAttribute("buffet", d);
 		model.addAttribute("buffetDishesList", d.getOfferedDishes());
-		/*
-		model.addAttribute("buffetDishesList", dishService.findByIds(d.getOfferedDishes()));
-		model.addAttribute("buffetChef", chefService.findById(d.getChef().getId()));
-		model.addAttribute("buffetChef", d.getChef());
-		*/
 		String nextPage = "buffet.html";
+		return nextPage;
+	}
+
+	@GetMapping("/editBuffetForm/{id}")
+	public String getBuffetForm(@PathVariable Long id, Model model) { // NON FUNZIONA
+		model.addAttribute("buffet", buffetService.findById(id));
+		model.addAttribute("chefsList", chefService.findAll());
+		model.addAttribute("dishesList", dishService.findAll());
+		String nextPage = "editBuffetForm.html";
+		return nextPage;
+	}
+
+	@Transactional
+	@PostMapping("/edit/buffet/{id}")
+	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResults, Model model) {
+		String nextPage;
+		if(!bindingResults.hasErrors()) {
+			Buffet oldBuffet = buffetService.findById(id);
+			oldBuffet.setId(buffet.getId());
+			oldBuffet.setName(buffet.getName());
+			oldBuffet.setDescription(buffet.getDescription());
+			oldBuffet.setChef(buffet.getChef());
+			oldBuffet.setOfferedDishes(buffet.getOfferedDishes());
+			this.buffetService.save(oldBuffet);
+			model.addAttribute("buffet", buffet);
+			nextPage = "buffet.html";	  // presenta un pagina con la buffet appena salvata
+		} else {
+			model.addAttribute("dishesList", dishService.findAll());
+			model.addAttribute("chefsList", chefService.findAll());
+			nextPage = "editBuffetForm.html"; // ci sono errori, torna alla form iniziale
+			}
 		return nextPage;
 	}
 

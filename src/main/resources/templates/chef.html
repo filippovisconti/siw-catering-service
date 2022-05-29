@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
-	<title>Dish details</title>
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
+	<title>Chef details</title>
+	<!--<link rel="stylesheet" href="../../static/css/basestyle.css">-->
+	<link rel="stylesheet" href="../../static/css/chef.css">
 </head>
+
 <body>
-<div>
-	<h4>Chef details</h4>
+	<div>
+		<h1 class="page-title">Chef details</h1>
 
-	<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-	<div th:if="${chef}">
-		<div>
-			<span th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </span>
-			<span th:text="${chef.nationality}">Italy</span>
-		</div>
-		<ul>
-			<li th:each="buffet : ${chef.offeredBuffets}">
-				<a href="ingredient.html/0"
-				   th:href="@{'/buffet' + '/' + ${buffet.id}}"
-				   th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne, WithAGreatDescription</a>
-			</li>
-		</ul>
-	</div>
+			<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+			<div th:if="${chef}">
+				<div>
+					<span th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </span>
+					<span th:text="${chef.nationality}">Italy</span>
+				</div>
+				<ul>
+					<li th:each="buffet : ${chef.offeredBuffets}">
+						<a href="ingredient.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
+							th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne,
+							WithAGreatDescription</a>
+					</li>
+				</ul>
+			</div>
 
-	<div th:unless="${chef}">This dish does not exist.</div>
+			<div th:unless="${chef}">This dish does not exist.</div>
 
-	<!--<h4>Dettagli persona</h4>
+			<!--<h4>Dettagli persona</h4>
 	<div th:object="${ingredient}">
 		<span th:text="*{nome}">Paolo</span>
 		<span th:text="*{cognome}">Rossi</span>
 	</div>-->
 
 
-</div>
+	</div>
 </body>
+
 <div th:replace="fragments/components :: footer"></div>
+
 </html>

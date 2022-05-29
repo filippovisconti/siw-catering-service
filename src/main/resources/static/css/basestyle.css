@@ -21,8 +21,8 @@ header {
     color: #1a1a1a;
 }
 
-body {
-    height: 100vh;
+body div {
+    margin: 1%
 }
 
 
@@ -30,6 +30,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    height: 100vh;
 }
 
 
@@ -48,6 +49,7 @@ footer a:link {
 
 a:link {
     text-decoration: none;
+    color: #852f27;
 }
 
 a:visited {

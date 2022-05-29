@@ -27,6 +27,7 @@ public class BuffetService {
 		buffetRepository.save(buffet);
 	}
 
+
 	public Buffet search (String name) {
 		return buffetRepository.findByName(name);
 	}

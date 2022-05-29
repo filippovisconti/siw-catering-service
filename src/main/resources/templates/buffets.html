@@ -40,7 +40,7 @@
 				<td>
 					<form method="POST" th:action="@{'/remove/ask/buffet' + '/' + ${buffet.id}}" th:object="${buffet}">
 						<button class="button button2" type="submit">Remove</button>
-						<a class="button button2" href="chef.html/0"
+						<a class="button button2" href="buffet.html/0"
 							th:href="@{'/editBuffetForm' + '/' + ${buffet.id}}">Edit</a>
 					</form>
 

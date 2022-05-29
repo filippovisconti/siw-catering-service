@@ -1,50 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:replace="fragments/components :: baseHead(~{::title})">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
 	<title>Add Chef - Catering Service</title>
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
+<header>
+	<h1 class="header-title">Add a chef</h1>
+</header>
+
 <body>
-<h1>Public - Add a chef</h1>
+	<div class="parent">
 
-<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-<form method="POST" th:action="@{/chef}" th:object="${chef}">
-	<div th:if="${#fields.hasGlobalErrors()}">
-		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-	</div>
+		<div class="child">
+			<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef" */-->
+			<form method="POST" th:action="@{/chef}" th:object="${chef}">
+				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">this will contain
+						errors
+					</p>
+				</div>
 
-	<div>
-		<span>First name:</span>
-		<span>
-				<label>
-					<input th:field="*{firstName}" type="text"/>
-				</label>
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>First name:</td>
+							<td>
+								<label>
+									<input th:field="*{firstName}" type="text" />
+								</label>
+							</td>
+							<td><span class="error-text" th:errors="*{firstName}"
+									th:if="${#fields.hasErrors('firstName')}">error first
+									name</span></td>
+						</tr>
+						<tr>
+							<td>Last name:</td>
+							<td>
+								<label>
+									<input th:field="*{lastName}" type="text" />
+								</label>
+							</td>
+							<td><span class="error-text" th:errors="*{lastName}"
+									th:if="${#fields.hasErrors('lastName')}">error last
+									name</span></td>
+						</tr>
+						<tr>
+							<td>Nationality:</td>
+							<td><label>
+									<input th:field="*{lastName}" type="text" />
+								</label>
+							</td>
+							<td><span class="error-text" th:errors="*{nationality}"
+									th:if="${#fields.hasErrors('nationality')}">error
+									nationality</span></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="greyGridTable">
+					<tbody>
+						<tr>
+							<td>Picture</td>
+							<td>
+								<input type="file" />
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+				<div class="btn-div">
+					<span><button type="submit">Confirm</button></span>
+				</div>
+		</div>
+
+		<!-- <div>
+				<span>First name:</span>
+				<span>
+					<label>
+						<input th:field="*{firstName}" type="text" />
+					</label>
 				</span>
-		<span th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></span>
-	</div>
-	<div>
-		<span>Last name:</span>
-		<span>
-				<label>
-					<input th:field="*{lastName}" type="text"/>
-				</label>
-			</span>
-		<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
-	</div>
 
-	<div>
-		<span>Nationality:</span>
-		<span>
-				<label>
-					<input th:field="*{nationality}" type="text"/>
-				</label>
-			</span>
-		<span th:errors="*{nationality}" th:if="${#fields.hasErrors('nationality')}"></span>
-	</div>
+			</div>
+			<div>
+				<span>Last name:</span>
+				<span>
+					<label>
+						<input th:field="*{lastName}" type="text" />
+					</label>
+				</span>
+				<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
+			</div>
 
-	<div>
-		<span><button type="submit">Confirm</button></span>
+			<div>
+				<span>Nationality:</span>
+				<span>
+					<label>
+						<input th:field="*{nationality}" type="text" />
+					</label>
+				</span>
+				<span th:errors="*{nationality}" th:if="${#fields.hasErrors('nationality')}"></span>
+			</div>-->
+
+
+		</form>
 	</div>
-</form>
 </body>
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
+		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
+		<span th:unless="${authenticated}">Not authenticated</span>
+	</div>
+</footer>
+
 </html>

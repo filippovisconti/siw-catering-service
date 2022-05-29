@@ -3,32 +3,38 @@
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::title}))">
 	<title>Chef details</title>
-	<!--<link rel="stylesheet" href="../../static/css/basestyle.css">-->
-	<link rel="stylesheet" href="../../static/css/chef.css">
+	<link rel="stylesheet" href="../../static/css/basestyle.css">
+	<link rel="stylesheet" href="../../static/css/detailPage.css">
 </head>
 
+<header>
+	<h1 class="header-title">Chef details</h1>
+</header>
+
 <body>
-	<div>
-		<h1 class="page-title">Chef details</h1>
+	<div class="parent">
 
-			<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-			<div th:if="${chef}">
-				<div>
-					<span th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </span>
-					<span th:text="${chef.nationality}">Italy</span>
-				</div>
-				<ul>
-					<li th:each="buffet : ${chef.offeredBuffets}">
-						<a href="ingredient.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
-							th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne,
-							WithAGreatDescription</a>
-					</li>
-				</ul>
-			</div>
 
-			<div th:unless="${chef}">This dish does not exist.</div>
+		<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
+		<div class="child, descr" th:if="${chef}">
 
-			<!--<h4>Dettagli persona</h4>
+			<h1 th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </h1>
+			<span th:text="${chef.nationality}">Italy</span>
+			<ul>
+				<li th:each="buffet : ${chef.offeredBuffets}">
+					<a href="ingredient.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
+						th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne,
+						WithAGreatDescription</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="child">
+			<img class="profile-pic" src="../static/images/cracco.jpeg" alt="chef picture">
+		</div>
+		<!--<div class="child" th:unless="${chef}">This chef does not exist.</div>-->
+
+		<!--<h4>Dettagli persona</h4>
 	<div th:object="${ingredient}">
 		<span th:text="*{nome}">Paolo</span>
 		<span th:text="*{cognome}">Rossi</span>
@@ -38,6 +44,12 @@
 	</div>
 </body>
 
-<div th:replace="fragments/components :: footer"></div>
+<footer th:replace="fragments/components :: footer">
+	<div id="footer-links">
+		<span><a href="/index.html" th:href="@{/}">HomeTEST</a> - </span>
+		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout </a></span>
+		<span th:unless="${authenticated}">Not authenticated</span>
+	</div>
+</footer>
 
 </html>

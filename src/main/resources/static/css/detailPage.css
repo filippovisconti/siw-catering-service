@@ -16,13 +16,6 @@ body div {
     text-align: center;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    height: 100vh;
-}
-
 footer a:link {
     color: #854d27;
 }
@@ -34,4 +27,14 @@ a:link {
 
 a:visited {
     text-decoration: none;
+}
+
+.profile-pic {
+    margin-top: 10%;
+    border-radius: 50%;
+    width: 100%;
+}
+
+.descr {
+    padding: 7%;
 }

@@ -21,8 +21,8 @@ header {
     color: #1a1a1a;
 }
 
-body div {
-    margin: 1%
+.mylist {
+    padding: 10%;
 }
 
 
@@ -54,6 +54,7 @@ a:link {
 
 a:visited {
     text-decoration: none;
+    color: #852f27;
 }
 
 a:hover {
@@ -62,4 +63,73 @@ a:hover {
 
 a:active {
     text-decoration: underline;
+}
+
+.error-text {
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-size: larger;
+}
+
+.parent {
+    display: flex;
+    flex-flow: row;
+
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 15px, 50px
+}
+
+.child {
+    width: 30%;
+    /* Or whatever */
+    height: auto;
+    /* Or whatever */
+    margin: 5px
+}
+
+.parentCol {
+    display: flex;
+    flex-flow: column;
+
+    justify-content: space-around;
+    margin: 10px, 50px
+}
+
+.childCol {
+    width: 70vw;
+    /* Or whatever */
+    height: auto;
+    /* Or whatever */
+    margin: 5px;
+    padding: 10vh 15vw;
+}
+
+.btn-div {
+    text-align: center;
+    margin: 10%;
+}
+
+table.greyGridTable {
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table.greyGridTable td,
+table.greyGridTable th {
+
+    padding: 3px 4px;
+}
+
+table.greyGridTable tbody td {
+    font-size: 18px;
+}
+
+
+table.greyGridTable tfoot td {
+    font-size: 14px;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
 	<title>Add Chef - Catering Service</title>
 	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
 	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
@@ -47,7 +47,7 @@
 						<tr>
 							<td>Nationality:</td>
 							<td><label>
-									<input th:field="*{lastName}" type="text" />
+									<input th:field="*{nationality}" type="text" />
 								</label>
 							</td>
 							<td><span class="error-text" th:errors="*{nationality}"

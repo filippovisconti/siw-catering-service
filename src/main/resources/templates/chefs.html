@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHead(~{::title})">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>Chefs @ Catering Service</title>
     <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
 </head>
 <header>
     <h1>Chefs list</h1>
@@ -19,7 +20,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:if="${chefs.empty}">
+            <!--/*@thymesVar id="dishes" type="java.util.List<Chef>"*/-->
+            <tr th:if="${chefs.isEmpty()}">
                 <td colspan="3"> No Chefs Available </td>
             </tr>
             <!--/*@thymesVar id="chefs" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
@@ -34,7 +36,7 @@
                 </td>
                 <td>
                     <form method="POST" th:action="@{'/remove/ask/chef' + '/' + ${chef.id}}" th:object="${chef}">
-                        <button type="submit">Remove</button>
+                        <button class="button button2" type="submit">Remove</button>
                         <a class="button button2" href="chef.html/0"
                             th:href="@{'/editChefForm' + '/' + ${chef.id}}">Edit</a>
                     </form>

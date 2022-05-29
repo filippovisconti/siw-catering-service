@@ -30,9 +30,13 @@ a:visited {
 }
 
 .profile-pic {
+    position: center;
     margin-top: 10%;
+    margin-bottom: 10%;
     border-radius: 50%;
-    width: 100%;
+    width: 80%;
+    max-height: 95%;
+    max-width: 100%;
 }
 
 .descr {

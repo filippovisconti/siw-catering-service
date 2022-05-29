@@ -4,6 +4,7 @@
 <head th:replace="fragments/components :: baseHead(~{::title})">
     <title>Ingredients @ Catering Service</title>
     <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
 </head>
 <header>
     <h1>Ingredients list</h1>
@@ -20,7 +21,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:if="${ingredients.empty}">
+            <!--/*@thymesVar id="dishes" type="java.util.List<Ingredient>"*/-->
+            <tr th:if="${ingredients.isEmpty()}">
                 <td colspan="3"> No Ingredients Available </td>
             </tr>
             <!--/*@thymesVar id="ingredients" type="it.uniroma3.siw.siwcateringservice.model.Ingredient"*/-->
@@ -36,7 +38,7 @@
                 <td>
                     <form method="POST" th:action="@{'/remove/ask/ingredient' + '/' + ${ingredient.id}}"
                         th:object="${ingredient}">
-                        <button type="submit">Remove</button>
+                        <button class="button button2" type="submit">Remove</button>
                         <a class="button button2" href="ingredient.html/0"
                             th:href="@{'/editIngredientForm' + '/' + ${ingredient.id}}">Edit</a>
                     </form>

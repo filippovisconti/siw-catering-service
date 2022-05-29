@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::links}))">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>Dishes @ Catering Service</title>
     <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
 
 </head>
 <header>
@@ -20,7 +21,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:if="${dishes.empty}">
+            <!--/*@thymesVar id="dishes" type="java.util.List<Dish>"*/-->
+            <tr th:if="${dishes.isEmpty()}">
                 <td colspan="3"> No Buffets Available </td>
             </tr>
             <tr th:each="dish : ${dishes}">

@@ -15,7 +15,7 @@
 
 		<div class="child">
 			<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-			<form method="POST" th:action="@{/edit/dish/{id}(id=${dish.id})}" th:object="${dish}">
+			<form method="POST" th:action="@{/admin/edit/dish/{id}(id=${dish.id})}" th:object="${dish}">
 				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>

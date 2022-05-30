@@ -37,14 +37,22 @@ public class ChefController {
 		return nextPage;
 	}
 
-	@GetMapping("/chefForm")
+	@GetMapping("/chef/{id}")
+	public String getChef(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("chef", this.chefService.findById(id));
+		String nextPage = "chef.html";
+		return nextPage;
+	}
+
+// ADMIN ONLY
+	@GetMapping("/admin/chefForm")
 	public String getChefForm(Model model) {
 		model.addAttribute("chef", new Chef());
 		String nextPage = "chefForm.html";
 		return nextPage;
 	}
 
-	@PostMapping("/chef")
+	@PostMapping("/admin/chef")
 	public String newChef (@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
 		this.chefValidator.validate(chef,bindingResult);
 		String nextPage;
@@ -56,7 +64,7 @@ public class ChefController {
 			nextPage = "chefForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
-	@GetMapping("/editChefForm/{id}")
+	@GetMapping("/admin/editChefForm/{id}")
 	public String getChefForm(@PathVariable Long id, Model model) { // NON FUNZIONA
 		model.addAttribute("chef", chefService.findById(id));
 		String nextPage = "editChefForm.html";
@@ -64,7 +72,7 @@ public class ChefController {
 	}
 
 	@Transactional
-	@PostMapping("/edit/chef/{id}")
+	@PostMapping("/admin/edit/chef/{id}")
 	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
@@ -82,21 +90,15 @@ public class ChefController {
 		}
 		return nextPage;
 	}
-	@GetMapping("/chef/{id}")
-	public String getChef(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("chef", this.chefService.findById(id));
-		String nextPage = "chef.html";
-		return nextPage;
-	}
 
-	@PostMapping("/remove/ask/chef/{id}")
+	@PostMapping("/admin/remove/ask/chef/{id}")
 	public String askRemoveChefById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", this.chefService.findById(id));
 		String nextPage = "chefConfirmDelete.html";
 		return nextPage;
 	}
 
-	@PostMapping("/remove/confirm/chef/{id}")
+	@PostMapping("/admin/remove/confirm/chef/{id}")
 	public String confirmRemoveChefById(@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {

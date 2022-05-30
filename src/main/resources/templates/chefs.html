@@ -35,10 +35,10 @@
                         Italy</span>
                 </td>
                 <td>
-                    <form method="POST" th:action="@{'/remove/ask/chef' + '/' + ${chef.id}}" th:object="${chef}">
+                    <form method="POST" th:action="@{'/admin/remove/ask/chef' + '/' + ${chef.id}}" th:object="${chef}">
                         <button class="button button2" type="submit">Remove</button>
                         <a class="button button2" href="chef.html/0"
-                            th:href="@{'/editChefForm' + '/' + ${chef.id}}">Edit</a>
+                            th:href="@{'/admin/editChefForm' + '/' + ${chef.id}}">Edit</a>
                     </form>
                 </td>
             </tr>

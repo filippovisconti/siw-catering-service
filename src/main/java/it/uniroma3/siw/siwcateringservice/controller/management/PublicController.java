@@ -16,31 +16,8 @@ public class PublicController {
 	@GetMapping("/")
 	//@IsStdUser
 	public String getHomePage () {
-		String nextPage = "public_index.html";
+		String nextPage = "index.html";
 		return nextPage;
 	}
 
-	/*
-	TODO remove what's below
-	 */
-	@GetMapping("/test-login")
-	//@IsStdUser
-	public String getCurrentUser (Principal principal) {
-		return principal.getName();
-	}
-
-	@GetMapping("/public/add/buffet")
-	//@IsStdUser
-	public String addBuffet (Model model, Principal principal) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String currentUserName = null;
-		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-			currentUserName = authentication.getName();
-
-		}
-		model.addAttribute("buffet", new Buffet());
-		if (principal != null) model.addAttribute("uName", getCurrentUser(principal));
-		model.addAttribute("uName2", currentUserName);
-		return "addBuffet";
-	}
 }

@@ -3,8 +3,8 @@
 
 <head th:fragment="baseHead(title)">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
-	<meta charset="UTF-8" />
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 	<link rel="stylesheet" th:href="@{/css/basestyle.css}" href="../../static/css/basestyle.css">
@@ -13,9 +13,9 @@
 </head>
 
 <head th:fragment="baseHeadLinks(title, links)">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
 
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
-	<meta charset="UTF-8" />
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 	<link rel="stylesheet" th:href="@{/css/basestyle.css}" href="../../static/css/basestyle.css">
@@ -39,9 +39,13 @@
 		<p>&copy;2022 <a href="http://www.filippovisconti.com">Filippo Visconti</a></p>
 	</div>
 	<div id="footer-links">
-		<span><a href="/index.html" th:href="@{/}">Home</a> - </span>
-		<span th:if="${authenticated}"><a href="/index.html" th:href="@{/logout}">Logout</a></span>
-		<span th:unless="${authenticated}">Not authenticated</span>
+		<span th:if="${principal != null}">
+			<a href="/admin_index.html" th:href="@{/admin}">Home</a> - <a href="/index.html"
+				th:href="@{/logout}">Logout</a>
+		</span>
+		<span th:unless="${principal != null}">
+			<a href="/index.html" th:href="@{/}">Home</a> - Not authenticated
+		</span>
 	</div>
 
 </footer>

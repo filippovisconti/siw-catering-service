@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
+    <title>Public Home Page - Catering Service </title>
+    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
+
+</head>
+<header>
+    <h1 class="header-title">Login</h1>
+</header>
+
+<body>
+    <div class="parent">
+
+        <div class="child">
+            <form th:action="@{/login}" method="POST">
+                <table class="greyGridTable">
+                    <tbody>
+                        <tr>
+                            <td>Username:</td>
+                            <td>
+                                <span><input name="username" type="text" placeholder="username" required /></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td> <span><input name="password" type="password" placeholder="password" required /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="btn-div">
+                    <span><button type="submit">Login</button></span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+<footer th:replace="fragments/components :: footer">
+    <div id="footer-links">
+        <span><a href="/index.html">HomeTEST</a> - </span>
+        <a href="/index.html">Logout </a>
+    </div>
+</footer>
+
+</html>

@@ -32,14 +32,22 @@ public class IngredientController {
 		return nextPage;
 	}
 
-	@GetMapping("/ingredientForm")
+	@GetMapping("/ingredient/{id}")
+	public String getIngredient(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("ingredient", this.ingredientService.findById(id));
+		String nextPage = "ingredient.html";
+		return nextPage;
+	}
+
+	// ADMIN ONLY
+	@GetMapping("/admin/ingredientForm")
 	public String getIngredientForm(Model model) {
 		model.addAttribute("ingredient", new Ingredient());
 		String nextPage = "ingredientForm.html";
 		return nextPage;
 	}
 
-	@PostMapping("/ingredient")
+	@PostMapping("/admin/ingredient")
 	public String newIngredient (@Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResult, Model model) {
 	this.ingredientValidator.validate(ingredient,bindingResult);
 		String nextPage;
@@ -51,7 +59,7 @@ public class IngredientController {
 			nextPage = "ingredientForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
-	@GetMapping("/editIngredientForm/{id}")
+	@GetMapping("/admin/editIngredientForm/{id}")
 	public String getBuffetForm(@PathVariable Long id, Model model) {
 		model.addAttribute("buffet", ingredientService.findById(id));
 		String nextPage = "editIngredientForm.html";
@@ -59,7 +67,7 @@ public class IngredientController {
 	}
 
 	@Transactional
-	@PostMapping("/edit/ingredient/{id}")
+	@PostMapping("/admin/edit/ingredient/{id}")
 	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResults, Model model) {
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
@@ -76,21 +84,16 @@ public class IngredientController {
 		}
 		return nextPage;
 	}
-	@GetMapping("/ingredient/{id}")
-	public String getIngredient(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("ingredient", this.ingredientService.findById(id));
-		String nextPage = "ingredient.html";
-		return nextPage;
-	}
 
-	@PostMapping("/remove/ask/ingredient/{id}")
+
+	@PostMapping("/admin/remove/ask/ingredient/{id}")
 	public String askRemoveIngredientById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ingredient", this.ingredientService.findById(id));
 		String nextPage = "ingredientConfirmDelete.html";
 		return nextPage;
 	}
 
-	@PostMapping("/remove/confirm/ingredient/{id}")
+	@PostMapping("/admin/remove/confirm/ingredient/{id}")
 	public String confirmRemoveIngredientById(@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {

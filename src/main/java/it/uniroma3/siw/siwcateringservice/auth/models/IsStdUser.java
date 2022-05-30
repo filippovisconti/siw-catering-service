@@ -1,4 +1,4 @@
-package it.uniroma3.siw.siwcateringservice.auth.roles;
+package it.uniroma3.siw.siwcateringservice.auth.models;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-//@PreAuthorize("hasAuthority('READ') and hasAuthority('WRITE')")
-@PreAuthorize("isAuthenticated()")
-public @interface IsAdmin {
+//@PreAuthorize("hasAuthority('READ')")
+@PreAuthorize("isAnonymous()")
+public @interface IsStdUser {
 }

@@ -22,7 +22,8 @@
 				<tbody>
 					<tr>
 						<td>
-							<form method="POST" th:action="@{'/remove/confirm/ingredient' + '/' + ${ingredient.id}}"
+							<form method="POST"
+								th:action="@{'/admin/remove/confirm/ingredient' + '/' + ${ingredient.id}}"
 								th:object="${ingredient}">
 								<span><button class="button button1" type="submit">Confirm</button></span>
 							</form>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
-<head th:replace="fragments/components :: baseHead(~{::title})">
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>Ingredients @ Catering Service</title>
     <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
     <link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
@@ -36,11 +36,11 @@
                         Italy</span>
                 </td>
                 <td>
-                    <form method="POST" th:action="@{'/remove/ask/ingredient' + '/' + ${ingredient.id}}"
+                    <form method="POST" th:action="@{'/admin/remove/ask/ingredient' + '/' + ${ingredient.id}}"
                         th:object="${ingredient}">
                         <button class="button button2" type="submit">Remove</button>
                         <a class="button button2" href="ingredient.html/0"
-                            th:href="@{'/editIngredientForm' + '/' + ${ingredient.id}}">Edit</a>
+                            th:href="@{'/admin/editIngredientForm' + '/' + ${ingredient.id}}">Edit</a>
                     </form>
                 </td>
             </tr>

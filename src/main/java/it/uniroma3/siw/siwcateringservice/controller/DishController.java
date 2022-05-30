@@ -36,7 +36,17 @@ public class DishController {
 		return nextPage;
 	}
 
-	@GetMapping("/dishForm")
+	@GetMapping("/dish/{id}")
+	public String getDish(@PathVariable("id") Long id, Model model) {
+		Dish d = this.dishService.findById(id);
+		model.addAttribute("dish", d);
+		model.addAttribute("dishIngredientsList", d.getIngredients());
+		String nextPage = "dish.html";
+		return nextPage;
+	}
+
+	// ADMIN ONLY
+	@GetMapping("/admin/dishForm")
 	public String getDishForm(Model model) { // NON FUNZIONA
 //		var d = new DishCreator();
 		//d.setIngredients(new ArrayList<>(ingredientService.findAll()));
@@ -47,7 +57,7 @@ public class DishController {
 		return nextPage;
 	}
 
-	@PostMapping("/dish")
+	@PostMapping("/admin/dish")
 	public String newDish (@Valid @ModelAttribute("dish") Dish dish,
 						   BindingResult bindingResult, Model model) {
 		this.dishValidator.validate(dish,bindingResult);
@@ -63,7 +73,7 @@ public class DishController {
 		return nextPage;
 	}
 
-	@GetMapping("/editDishForm/{id}")
+	@GetMapping("/admin/editDishForm/{id}")
 	public String getDishForm(@PathVariable Long id, Model model) {
 		model.addAttribute("dish", dishService.findById(id));
 		String nextPage = "editDishForm.html";
@@ -71,7 +81,7 @@ public class DishController {
 	}
 
 	@Transactional
-	@PostMapping("/edit/dish/{id}")
+	@PostMapping("/admin/edit/dish/{id}")
 	public String editDish(@PathVariable Long id, @Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResults, Model model) {
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
@@ -89,23 +99,14 @@ public class DishController {
 		return nextPage;
 	}
 
-	@GetMapping("/dish/{id}")
-	public String getDish(@PathVariable("id") Long id, Model model) {
-		Dish d = this.dishService.findById(id);
-		model.addAttribute("dish", d);
-		model.addAttribute("dishIngredientsList", d.getIngredients());
-		String nextPage = "dish.html";
-		return nextPage;
-	}
-
-	@PostMapping("/remove/ask/dish/{id}")
+	@PostMapping("/admin/remove/ask/dish/{id}")
 	public String askRemoveDishById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("dish", this.dishService.findById(id));
 		String nextPage = "dishConfirmDelete.html";
 		return nextPage;
 	}
 
-	@PostMapping("/remove/confirm/dish/{id}")
+	@PostMapping("/admin/remove/confirm/dish/{id}")
 	public String confirmRemoveDishById(@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {

@@ -37,10 +37,10 @@
                 </td>
 
                 <td>
-                    <form method="POST" th:action="@{'/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
+                    <form method="POST" th:action="@{'/admin/remove/ask/dish' + '/' + ${dish.id}}" th:object="${dish}">
                         <button class="button button2" type="submit">Remove</button>
                         <a class="button button2" href="chef.html/0"
-                            th:href="@{'/editDishForm' + '/' + ${dish.id}}">Edit</a>
+                            th:href="@{'/admin/editDishForm' + '/' + ${dish.id}}">Edit</a>
                     </form>
 
                 </td>

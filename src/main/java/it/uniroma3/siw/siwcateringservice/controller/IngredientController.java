@@ -61,7 +61,7 @@ public class IngredientController {
 	}
 	@GetMapping("/admin/editIngredientForm/{id}")
 	public String getBuffetForm(@PathVariable Long id, Model model) {
-		model.addAttribute("buffet", ingredientService.findById(id));
+		model.addAttribute("ingredient", ingredientService.findById(id));
 		String nextPage = "editIngredientForm.html";
 		return nextPage;
 	}

@@ -40,7 +40,7 @@
 							<td>Description:</td>
 							<td>
 								<label>
-									<input th:field="*{description" type="text" th:value="*{description}" />
+									<input th:field="*{description}" type="text" th:value="*{description}" />
 								</label>
 							</td>
 							<td>
@@ -58,9 +58,6 @@
 									</option>
 								</select>
 							</td>
-							<td><span class="error-text" th:errors="*{nationality}"
-									th:if="${#fields.hasErrors('nationality')}">error
-									nationality</span></td>
 						</tr>
 					</tbody>
 				</table>

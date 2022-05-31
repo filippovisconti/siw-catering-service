@@ -64,27 +64,25 @@
 							</td>
 
 						</tr>
-						<!--<tr>
+						<tr>
 							<td>Role (DEFAULT or ADMIN):</td>
 							<td><label>
 									<input th:field="*{role}" type="text" />
 								</label>
 							</td>
 
-						</tr>-->
-						<tr>
-							<td>Password:</td>
-							<td>
-								<label>
-									<input th:field="*{password}" type="password" />
-								</label>
-							</td>
-							<td>
-								<span class="error-text" th:errors="*{password}"
-									th:if="${#fields.hasErrors('password')}">
-									error origin
-								</span>
-							</td>
+						</tr <tr>
+						<td>Password:</td>
+						<td>
+							<label>
+								<input th:field="*{password}" type="password" />
+							</label>
+						</td>
+						<td>
+							<span class="error-text" th:errors="*{password}" th:if="${#fields.hasErrors('password')}">
+								error origin
+							</span>
+						</td>
 						</tr>
 
 					</tbody>

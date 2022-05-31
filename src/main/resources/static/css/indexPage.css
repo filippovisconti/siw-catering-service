@@ -18,11 +18,17 @@ off white f2f4f3, #e1e1e1
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    border-radius: 0%;
+    width: 15vw;
+}
+
+body {
+    place-content: center;
 }
 
 .welcome-text {
     text-align: center;
-    padding: 2%;
+    padding: 2vh 0vw;
 }
 
 .center-text {
@@ -44,28 +50,21 @@ off white f2f4f3, #e1e1e1
 .button2 {
     background-color: white;
     color: black;
-    border: 2px solid #dd7230;
+    border: 2px solid #854d27;
 }
 
 .button2:hover {
-    background-color: #dd7230;
+    background-color: #854d27;
     color: white;
 }
 
-
-input {
-    display: block;
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    font: inherit;
+.button3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #dd7230;
 }
 
-input::placeholder {
-    transition: opacity .25s;
-}
-
-input:focus::placeholder {
-    opacity: 0;
+.button3:hover {
+    background-color: #dd7230;
+    color: white;
 }

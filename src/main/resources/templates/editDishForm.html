@@ -13,7 +13,7 @@
 <body>
 	<div class="parent">
 
-		<div class="child">
+		<div class="childForm">
 			<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
 			<form method="POST" th:action="@{/admin/edit/dish/{id}(id=${dish.id})}" th:object="${dish}">
 				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">

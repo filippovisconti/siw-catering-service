@@ -6,6 +6,7 @@ pale green #d5dddb,
 black #1a1a1a,
 white #f2f4ef
 off white f2f4f3, #e1e1e1
+background: #d5dddb;
 */
 html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -13,6 +14,41 @@ html {
     color: #e1e1e1;
 }
 
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.center-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+}
+
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
+*/
 header {
     padding: 2%;
     text-align: center;
@@ -26,20 +62,12 @@ header {
 }
 
 
-body {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    height: 100vh;
-}
-
-
 footer {
     text-align: center;
     padding: 2%;
     margin-top: auto;
     min-height: 50px;
-    background: #d5dddb;
+    background: #DCE4E7;
     color: #1a1a1a;
 }
 
@@ -103,12 +131,12 @@ a:active {
     height: auto;
     /* Or whatever */
     margin: 5px;
-    padding: 10vh 15vw;
+    padding: 5vh 15vw;
 }
 
 .btn-div {
     text-align: center;
-    margin: 10%;
+    margin: 5vh 0%;
 }
 
 table.greyGridTable {

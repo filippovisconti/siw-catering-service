@@ -20,4 +20,11 @@ public class PublicController {
 		return nextPage;
 	}
 
+	@GetMapping("/public")
+	//@IsStdUser
+	public String getPublicHomePage () {
+		String nextPage = "public_index.html";
+		return nextPage;
+	}
+
 }

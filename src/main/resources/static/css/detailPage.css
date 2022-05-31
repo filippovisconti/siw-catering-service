@@ -42,3 +42,27 @@ a:visited {
 .descr {
     padding: 5%;
 }
+
+.childForm {
+    padding: 0vh 20vw;
+}
+
+input,
+select {
+    display: block;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    font: inherit;
+}
+
+input::placeholder,
+select::placeholder {
+    transition: opacity .25s;
+}
+
+input:focus::placeholder,
+select::placeholder {
+    opacity: 0;
+}

@@ -13,7 +13,7 @@
 <body>
 	<div class="parent">
 
-		<div class="child">
+		<div class="childForm">
 
 			<!--/*@thymesVar id="credentials" type="it.uniroma3.siw.siwcateringservice.auth.models.Credentials"*/-->
 			<form method="POST" th:action="@{/register}" th:object="${credentials}">
@@ -63,14 +63,14 @@
 							</td>
 
 						</tr>
-						<tr>
+						<!--<tr>
 							<td>Role (DEFAULT or ADMIN):</td>
 							<td><label>
 									<input th:field="*{role}" type="text" />
 								</label>
 							</td>
 
-						</tr>
+						</tr>-->
 						<tr>
 							<td>Password:</td>
 							<td>
@@ -88,7 +88,7 @@
 
 					</tbody>
 				</table>
-				<table class="greyGridTable">
+				<table class="center-div">
 					<tbody>
 						<tr>
 							<td>Picture</td>

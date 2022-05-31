@@ -40,6 +40,7 @@ public class AuthController {
 	public String register (@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult, Model model) {
 		String nextPage;
 		if (!bindingResult.hasErrors()) {
+			credentials.setRole("DEFAULT");
 			this.credentialsService.saveCredentials(credentials);
 			nextPage = "loginForm.html";
 		} else {
@@ -56,8 +57,8 @@ public class AuthController {
 		UserDetails adminDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(adminDetails.getUsername());
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-			return "admin_index.html";
+			return "redirect:/admin";
 		}
-		return "loginForm.html";
+		return "redirect:/login";
 	}
 }

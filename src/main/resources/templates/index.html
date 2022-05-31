@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+    xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>Public Home Page - Catering Service </title>
@@ -20,7 +21,7 @@
         <table class="greyGridTable">
             <tbody>
                 <tr>
-                    <td><a class="button button1" href="/login.html" th:href="@{/login}">Administration</a>
+                    <td><a class="button button1" href="/login.html" th:href="@{/admin}">Administration</a>
                     </td>
                 </tr>
                 <tr>

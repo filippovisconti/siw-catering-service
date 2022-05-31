@@ -31,12 +31,15 @@ a:visited {
 
 .profile-pic {
     position: center;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    /*margin-top: 10%;
+    margin-bottom: 10%;*/
+    margin: 1vh 0vw;
+    padding: 1vh 0;
     border-radius: 50%;
     width: 80%;
     max-height: 95%;
     max-width: 100%;
+
 }
 
 .descr {

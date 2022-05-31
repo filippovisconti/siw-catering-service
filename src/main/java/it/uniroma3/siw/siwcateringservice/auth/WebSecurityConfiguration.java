@@ -27,6 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure (HttpSecurity http) throws Exception {
 		http.authorizeRequests() // authorization paragraph: qui definiamo chi può accedere a cosa
 				.antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**", "/public/**").permitAll() 	//chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
+				.antMatchers(HttpMethod.GET,  "/chef/**", "/chefs/**", "/dish/**", "/dishes/**", "/buffet/**", "/buffets/**", "/ingredient/**", "/ingredients/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/login", "/register").permitAll() 											// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
 				.antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE) 							// solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
 				.antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
@@ -34,12 +35,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 										// login paragraph: qui definiamo come è gestita l'autenticazione
 				.and().formLogin() 		// usiamo il protocollo formlogin
 				.loginPage("/login") 	// la pagina di login si trova a /login
-				.defaultSuccessUrl("/default") // se il login ha successo, si viene rediretti al path /default
+				.defaultSuccessUrl("/default", false) // se il login ha successo, si viene rediretti al path /default
 				// logout paragraph: qui definiamo il logout
 				.and()
 				.logout()
 				.logoutUrl("/logout") 		// il logout è attivato con una richiesta GET a "/logout"
-				.logoutSuccessUrl("/index") // in caso di successo, si viene reindirizzati alla /index page
+				.logoutSuccessUrl("/") // in caso di successo, si viene reindirizzati alla /index page
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

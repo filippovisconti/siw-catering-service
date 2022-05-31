@@ -27,7 +27,7 @@ public class AuthController {
 
 	@GetMapping("/logout")
 	public String logout(Model model) {
-		return "index";
+		return "redirect:/public";
 	}
 
 	@GetMapping("/register")

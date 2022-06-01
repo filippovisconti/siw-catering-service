@@ -8,6 +8,22 @@ white #f2f4ef
 off white f2f4f3, #e1e1e1
 background: #d5dddb;
 */
+
+/*
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+}
+body {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
+*/
+
+
 html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #1a1a1a;
@@ -15,72 +31,61 @@ html {
 }
 
 
-body {
-    display: flex;
-    flex-direction: column;
+* {
     margin: 0;
-    height: 100vh;
+    /* padding: 0; */
+    /*box-sizing: border-box;*/
 }
 
-/** {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-}
-*/
 header {
+    position: sticky;
+    top: 0;
+    padding: 1vh 0;
+    width: 100%;
+    height: 8vh;
+    min-height: 50px;
+    background-color: #DCE4E7;
+    color: #1a1a1a;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 5vh;
-
-    padding: 2%;
-    text-align: center;
-    background-color: #DCE4E7;
-    min-height: 50px;
-    color: #1a1a1a;
-}
-
-h1 {
-    font-size: 40px;
-    font-size: 3.3vw;
 
 }
 
-div h1 {
-    font-size: 25px;
-    font-size: 2vw;
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+    /* Center the DIV horizontally */
 }
 
-span,
-a {
-    font-size: 16px;
-    font-size: 1.3vw;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
 }
+
 
 footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    width: 100vw;
     height: 5vh;
 
     text-align: center;
-    padding: 2%;
+    /* padding: 2vh 0vw; */
     margin-top: auto;
     min-height: 50px;
     background: #DCE4E7;
     color: #1a1a1a;
-    font-size: 16px;
-    font-size: 1.25vw;
+    position: fixed;
+    bottom: 0;
 }
 
 footer a:link {
@@ -122,11 +127,11 @@ a:active {
 }
 
 .child {
-    width: 40%;
+    width: 50%;
     /* Or whatever */
     height: auto;
     /* Or whatever */
-    margin: 5px
+    margin: 5px auto;
 }
 
 .parentCol {
@@ -138,12 +143,12 @@ a:active {
 }
 
 .childCol {
-    width: 70vw;
+    width: 80vw;
     /* Or whatever */
     height: auto;
     /* Or whatever */
-    margin: 5px;
-    padding: 5vh 15vw;
+    margin: 5px auto;
+    padding: 5vh 10vw;
 }
 
 .btn-div {
@@ -169,7 +174,7 @@ table.greyGridTable th {
 
 table.greyGridTable tbody td {
     font-size: 18px;
-    font-size: 1.5vw;
+    font-size: 2.2vh;
 }
 
 

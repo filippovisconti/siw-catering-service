@@ -6,11 +6,12 @@ pale green #d5dddb,
 black #1a1a1a,
 white #f2f4ef
 off white f2f4f3, #e1e1e1
-*/
 
 body div {
-    margin: 1%
-}
+    margin: 1%;}
+*/
+
+
 
 .page-title {
     text-align: center;
@@ -30,20 +31,23 @@ a:visited {
 }
 
 .profile-pic {
-    position: center;
+    position: relative;
+    left: 3vw;
     /*margin-top: 10%;
-    margin-bottom: 10%;*/
-    margin: 1vh 0vw;
-    padding: 1vh 0;
+    margin-bottom: 10%;
+    margin: 5vh 10vw;*/
+    padding: 5vh 0;
     border-radius: 50%;
-    width: 80%;
+    width: 100%;
     max-height: 95%;
-    max-width: 100%;
+    max-width: 80%;
 
 }
 
+
 .descr {
-    padding: 5%;
+    margin: 10vh 10vw;
+    padding: 5vh 0vw;
 }
 
 .childForm {

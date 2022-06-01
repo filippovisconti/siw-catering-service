@@ -9,8 +9,10 @@
     <link th:href="@{/css/cards.css}" rel="stylesheet" href="../../static/css/cards.css">
 
 </head>
-<header>
-    <h1 class="header-title">Catering Service</h1>
+<header class="header-title">
+    <div>
+        <h1>Catering Service</h1>
+    </div>
 </header>
 
 <body>
@@ -48,8 +50,8 @@
     </table>
 
 
-    <br>
--->
+              <br>
+            -->
 
         <div class="parent card_container">
             <article class="card card-chef">
@@ -102,7 +104,7 @@
 
     </div>
 </body>
-<footer th:replace="fragments/components :: footer">
+<footer class="fixed-footer" th:replace="fragments/components :: footer">
     <div id="footer-links">
         <span><a href="/index.html">HomeTEST</a> - </span>
         <a href="/index.html" th:href="@{/logout}">Logout </a>

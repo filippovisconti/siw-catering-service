@@ -3,7 +3,7 @@
 
 <head th:fragment="baseHead(title)">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
@@ -13,7 +13,7 @@
 </head>
 
 <head th:fragment="baseHeadLinks(title, links)">
-	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
 
 	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
 	<!-- default styles and scripts -->
@@ -21,7 +21,7 @@
 	<link rel="stylesheet" th:href="@{/css/basestyle.css}" href="../../static/css/basestyle.css">
 	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
 
-	<th:block th:replace="${links}"/>
+	<th:block th:replace="${links}" />
 
 </head>
 
@@ -30,11 +30,11 @@
 </header>
 
 <body>
-This will be the body
-<p>Some text with a <a href="http://www.filippovisconti.com">link</a>.</p>
+	This will be the body
+	<p>Some text with a <a href="http://www.filippovisconti.com">link</a>.</p>
 </body>
 
-<footer th:fragment="footer">
+<footer class="fixed-footer" th:fragment="footer">
 	<div id="copyright">
 		<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a></p>
 	</div>
@@ -43,7 +43,7 @@ This will be the body
 			<a href="/index.html" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
 			<a href="/index.html" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a> -
 			<a href="/index.html" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
-		<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a></span>
+			<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a></span>
 		</span>
 
 	</div>

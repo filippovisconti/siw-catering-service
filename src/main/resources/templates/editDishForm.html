@@ -49,16 +49,6 @@
 									error description</span>
 							</td>
 						</tr>
-						<tr>
-							<td>Chef:</td>
-							<td><select th:field="*{chef}">
-									<option value="">---</option>
-									<!--/*@thymesVar id="chefsList" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-									<option th:each="c : ${chefsList}" th:value="${c.id}" th:text="${c}">Carlo Cracco
-									</option>
-								</select>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 
@@ -68,11 +58,27 @@
 					<fieldset>
 						<legend>Select Ingredients</legend>
 						<!--/*@thymesVar id="ingredientsList" type="java.util.List<Ingredient>"*/-->
-						<div th:each="ingredient: ${ingredientsList}">
+						<!--<div th:each="ingredient: ${ingredientsList}">
 							<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}" name="ingredient"
 								th:value="${ingredient.id}">
 							<label for="${ingredientsList}" th:text="${ingredient.name}">Ingredient name</label>
-						</div>
+						</div>-->
+
+						<table>
+							<tbody>
+								<tr th:each="ingredient: ${ingredientsList}">
+									<td>
+										<input type="checkbox" id="${ingredientsList}" th:field="*{ingredients}"
+											name="ingredient" th:value="${ingredient.id}"> <label
+											for="${ingredientsList}"></label>
+									</td>
+									<td>
+										<label for="${ingredientsList}" th:text="${ingredient.name}"> Nome ingredient
+										</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</fieldset>
 				</div>
 				<div class="btn-div">

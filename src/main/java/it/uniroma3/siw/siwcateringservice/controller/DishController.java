@@ -76,6 +76,7 @@ public class DishController {
 	@GetMapping("/admin/editDishForm/{id}")
 	public String getDishForm(@PathVariable Long id, Model model) {
 		model.addAttribute("dish", dishService.findById(id));
+		model.addAttribute("ingredientsList", ingredientService.findAll());
 		String nextPage = "editDishForm.html";
 		return nextPage;
 	}

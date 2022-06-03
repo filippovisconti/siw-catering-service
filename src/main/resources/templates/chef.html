@@ -17,17 +17,21 @@
 
 
 		<!--/*@thymesVar id="chef" type="it.uniroma3.siw.siwcateringservice.model.Chef"*/-->
-		<div class="child, descr" th:if="${chef}">
+		<div class="child descr" th:if="${chef}">
 
 			<h1 th:text="${chef.firstName} + ' ' + ${chef.lastName}">Carlo Cracco </h1>
 			<span th:text="${chef.nationality}">Italy</span>
-			<ul>
-				<li th:each="buffet : ${chef.offeredBuffets}">
-					<a href="ingredient.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
-						th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne,
-						WithAGreatDescription</a>
-				</li>
-			</ul>
+
+			<div class="mylist">
+				<ul>
+					<li th:each="buffet : ${chef.offeredBuffets}">
+						<a href="ingredient.html/0" th:href="@{'/buffet' + '/' + ${buffet.id}}"
+							th:text="${buffet.name} + ', ' + ${buffet.description}">BuffetNumberOne,
+							WithAGreatDescription</a>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 
 		<div class="child">

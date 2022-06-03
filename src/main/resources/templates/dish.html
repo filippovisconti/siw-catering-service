@@ -15,12 +15,12 @@
 <body>
 	<div class="parent">
 		<!--/*@thymesVar id="dish" type="it.uniroma3.siw.siwcateringservice.model.Dish"*/-->
-		<div class="child, descr" th:if="${dish}">
+		<div class="child descr" th:if="${dish}">
 			<div>
 				<h1 th:text="${dish.name}">Tagliatelle di Nonna Pina</h1>
 				<div th:text="${dish.description}">A tasteful dish made with love</div>
 			</div>
-			<div class="child, mylist">
+			<div class="mylist">
 				<ul>
 					<li th:each="ingredient : ${dish.ingredients}">
 						<a href="ingredient.html/0" th:href="@{'/ingredient' + '/' + ${ingredient.id}}"

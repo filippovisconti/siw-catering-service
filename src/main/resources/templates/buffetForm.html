@@ -67,11 +67,27 @@
 					<!--/*@thymesVar id="dishesList" type="java.util.List<Dish>"*/-->
 					<fieldset>
 						<legend>Select dishes</legend>
-						<div th:each="dish: ${dishesList}">
+						<!--<div th:each="dish: ${dishesList}">
 							<input type="checkbox" id="${dishesList}" th:field="*{offeredDishes}" name="dish"
 								th:value="${dish.id}">
-							<label for="${dishesList}" th:text="${dish.name}">Nome ingredient</label>
-						</div>
+							<label for="${dishesList}" th:text="${dish.name}">Nome dish</label>
+						</div>-->
+
+						<table>
+							<tbody>
+								<tr th:each="dish: ${dishesList}">
+									<td>
+										<input type="checkbox" id="${dishesList}" th:field="*{offeredDishes}"
+											name="dish" th:value="${dish.id}"> <label for="${dishesList}">
+
+										</label>
+									</td>
+									<td>
+										<label for="${dishesList}" th:text="${dish.name}">Nome dish</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</fieldset>
 				</div>
 				<div class="btn-div">

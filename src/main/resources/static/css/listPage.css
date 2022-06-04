@@ -10,7 +10,7 @@ off white f2f4f3, #e1e1e1
 .button {
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -18,7 +18,7 @@ off white f2f4f3, #e1e1e1
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    font-size: 1.5vw;
+    font-size: 2.5vh;
 }
 
 .welcome-text {

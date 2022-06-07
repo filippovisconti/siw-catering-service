@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -41,5 +42,18 @@ public class Chef {
 	@Override
 	public String toString () {
 		return id + " " + firstName + " " + lastName + ", " + nationality;
+	}
+
+	@Override
+	public boolean equals (Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Chef chef = (Chef) o;
+		return firstName.equals(chef.firstName) && lastName.equals(chef.lastName);
+	}
+
+	@Override
+	public int hashCode () {
+		return Objects.hash(firstName, lastName);
 	}
 }

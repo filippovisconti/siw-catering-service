@@ -26,6 +26,12 @@ body {
     place-content: center;
 }
 
+a.button1,
+a.button2,
+a.button3 {
+    color: #1a1a1a;
+}
+
 .welcome-text {
     text-align: center;
     padding: 2vh 0vw;

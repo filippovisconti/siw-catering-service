@@ -69,9 +69,11 @@ public class IngredientController {
 	@Transactional
 	@PostMapping("/admin/edit/ingredient/{id}")
 	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResults, Model model) {
+		Ingredient oldIngredient = ingredientService.findById(id);
+		if (! oldIngredient.equals(ingredient))
+			this.ingredientValidator.validate(ingredient, bindingResults);
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
-			Ingredient oldIngredient = ingredientService.findById(id);
 			oldIngredient.setId(ingredient.getId());
 			oldIngredient.setName(ingredient.getName());
 			oldIngredient.setDescription(ingredient.getDescription());

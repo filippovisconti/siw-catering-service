@@ -34,7 +34,7 @@ public class BuffetController {
 	private BuffetValidator buffetValidator;
 
 	@GetMapping("/buffets")
-	public String getAllBuffets (Model model) {
+	public String getAllBuffets(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
 		model.addAttribute("buffets", buffets);
 		String nextPage = "buffets.html";
@@ -42,7 +42,7 @@ public class BuffetController {
 	}
 
 	@GetMapping("/buffet/{id}")
-	public String getBuffet (@PathVariable("id") Long id, Model model) {
+	public String getBuffet(@PathVariable("id") Long id, Model model) {
 		Buffet d = this.buffetService.findById(id);
 		model.addAttribute("buffet", d);
 		model.addAttribute("buffetDishesList", d.getOfferedDishes());
@@ -52,7 +52,7 @@ public class BuffetController {
 
 	// ADMIN ONLY
 	@GetMapping("/admin/buffetForm")
-	public String getBuffetForm (Model model) { // NON FUNZIONA
+	public String getBuffetForm(Model model) { // NON FUNZIONA
 		model.addAttribute("buffet", new Buffet());
 		model.addAttribute("chefsList", chefService.findAll());
 		model.addAttribute("dishesList", dishService.findAll());
@@ -61,13 +61,13 @@ public class BuffetController {
 	}
 
 	@PostMapping("/admin/buffet")
-	public String newBuffet (@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
+	public String newBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
 		this.buffetValidator.validate(buffet, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.buffetService.save(buffet); // salvo un oggetto Buffet
 			model.addAttribute("buffet", buffet);
-			nextPage = "buffet.html";      // presenta un pagina con la buffet appena salvata
+			nextPage = "buffet.html"; // presenta un pagina con la buffet appena salvata
 		} else {
 			model.addAttribute("dishesList", dishService.findAll());
 			model.addAttribute("chefsList", chefService.findAll());
@@ -76,10 +76,8 @@ public class BuffetController {
 		return nextPage;
 	}
 
-
-
 	@GetMapping("/admin/editBuffetForm/{id}")
-	public String getBuffetForm (@PathVariable Long id, Model model) {
+	public String getBuffetForm(@PathVariable Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		model.addAttribute("chefsList", chefService.findAll());
 		model.addAttribute("dishesList", dishService.findAll());
@@ -90,9 +88,11 @@ public class BuffetController {
 	@Transactional
 	@PostMapping("/admin/edit/buffet/{id}")
 	public String editBuffet (@PathVariable Long id, @Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResults, Model model) {
+			Buffet oldBuffet = buffetService.findById(id);
+			if (!oldBuffet.equals(buffet))
+			this.buffetValidator.validate(buffet, bindingResults);
 		String nextPage;
 		if (!bindingResults.hasErrors()) {
-			Buffet oldBuffet = buffetService.findById(id);
 			oldBuffet.setId(buffet.getId());
 			oldBuffet.setName(buffet.getName());
 			oldBuffet.setDescription(buffet.getDescription());
@@ -110,14 +110,14 @@ public class BuffetController {
 	}
 
 	@PostMapping("/admin/remove/ask/buffet/{id}")
-	public String askRemoveBuffetById (@PathVariable("id") Long id, Model model) {
+	public String askRemoveBuffetById(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("buffet", this.buffetService.findById(id));
 		String nextPage = "buffetConfirmDelete.html";
 		return nextPage;
 	}
 
 	@PostMapping("/admin/remove/confirm/buffet/{id}")
-	public String confirmRemoveBuffetById (@PathVariable("id") Long id, Model model) {
+	public String confirmRemoveBuffetById(@PathVariable("id") Long id, Model model) {
 		this.buffetService.deleteBuffetById(id);
 		String nextPage = "success.html";
 		return nextPage;

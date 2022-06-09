@@ -103,7 +103,7 @@ public class ChefController {
 		String nextPage = "success.html";
 		try {
 			this.chefService.deleteChefById(id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			nextPage = "error.html";
 		}
 		return nextPage;

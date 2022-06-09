@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="child">
-			<img class="profile-pic" th:src="@{/images/cracco.jpeg}" src="../static/images/cracco.jpeg"
+			<img class="profile-pic" th:src="@{'/images' + '/' + ${chef.firstName} + '_' + ${chef.lastName} + '.jpeg'}" src="../static/images/cracco.jpeg"
 				alt="chef picture">
 		</div>
 		<!--<div class="child" th:unless="${chef}">This chef does not exist.</div>-->

@@ -48,24 +48,24 @@ public class DishController {
 	// ADMIN ONLY
 	@GetMapping("/admin/dishForm")
 	public String getDishForm(Model model) { // NON FUNZIONA
-//		var d = new DishCreator();
-		//d.setIngredients(new ArrayList<>(ingredientService.findAll()));
+		// var d = new DishCreator();
+		// d.setIngredients(new ArrayList<>(ingredientService.findAll()));
 		model.addAttribute("dish", new Dish());
 		model.addAttribute("ingredientsList", ingredientService.findAll());
-		//model.addAttribute("ingredientList", new ArrayList<IngredientController>());
+		// model.addAttribute("ingredientList", new ArrayList<IngredientController>());
 		String nextPage = "dishForm.html";
 		return nextPage;
 	}
 
 	@PostMapping("/admin/dish")
-	public String newDish (@Valid @ModelAttribute("dish") Dish dish,
-						   BindingResult bindingResult, Model model) {
-		this.dishValidator.validate(dish,bindingResult);
+	public String newDish(@Valid @ModelAttribute("dish") Dish dish,
+			BindingResult bindingResult, Model model) {
+		this.dishValidator.validate(dish, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.dishService.save(dish); // salvo un oggetto Dish
 			model.addAttribute("dish", dish);
-			nextPage = "dish.html";	  // presenta un pagina con la dish appena salvata
+			nextPage = "dish.html"; // presenta un pagina con la dish appena salvata
 		} else {
 			model.addAttribute("ingredientsList", ingredientService.findAll());
 			nextPage = "dishForm.html"; // ci sono errori, torna alla form iniziale
@@ -84,9 +84,11 @@ public class DishController {
 	@Transactional
 	@PostMapping("/admin/edit/dish/{id}")
 	public String editDish(@PathVariable Long id, @Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResults, Model model) {
+			Dish oldDish = dishService.findById(id);
+			if (! oldDish.equals(dish))
+				this.dishValidator.validate(dish, bindingResults);
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
-			Dish oldDish = dishService.findById(id);
 			oldDish.setId(dish.getId());
 			oldDish.setName(dish.getName());
 			oldDish.setDescription(dish.getDescription());
@@ -112,7 +114,7 @@ public class DishController {
 		String nextPage = "success.html";
 		try {
 			this.dishService.deleteDishById(id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			nextPage = "error.html";
 		}
 		return nextPage;

@@ -1,21 +1,21 @@
 package it.uniroma3.siw.siwcateringservice.controller;
 
-import it.uniroma3.siw.siwcateringservice.model.Buffet;
+
 import it.uniroma3.siw.siwcateringservice.model.Chef;
 import it.uniroma3.siw.siwcateringservice.service.ChefService;
-import it.uniroma3.siw.siwcateringservice.service.DishService;
+import it.uniroma3.siw.siwcateringservice.service.FileUploadService;
+import it.uniroma3.siw.siwcateringservice.service.ImageService;
 import it.uniroma3.siw.siwcateringservice.validator.ChefValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -24,10 +24,14 @@ public class ChefController {
 	private ChefService chefService;
 
 	@Autowired
-	private DishService dishService;
+	private ChefValidator chefValidator;
 
 	@Autowired
-	private ChefValidator chefValidator;
+	private FileUploadService fileUploadService;
+
+	@Autowired
+	private ImageService imageService;
+
 
 	@GetMapping("/chefs")
 	public String getAllChefs(Model model) {
@@ -44,7 +48,7 @@ public class ChefController {
 		return nextPage;
 	}
 
-// ADMIN ONLY
+	// ADMIN ONLY
 	@GetMapping("/admin/chefForm")
 	public String getChefForm(Model model) {
 		model.addAttribute("chef", new Chef());
@@ -53,17 +57,40 @@ public class ChefController {
 	}
 
 	@PostMapping("/admin/chef")
-	public String newChef (@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
-		this.chefValidator.validate(chef,bindingResult);
+	public String newChef(@Valid @ModelAttribute("chef") Chef chef,
+						  //@RequestParam("image") MultipartFile imageFile,
+						  BindingResult bindingResult,
+						  Model model) {
+		this.chefValidator.validate(chef, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.chefService.save(chef); // salvo un oggetto Chef
 			model.addAttribute("chef", this.chefService.findById(chef.getId()));
-			nextPage = "chef.html";	  // presenta un pagina con la chef appena salvata
+/*
+			String fileName = chef.getFirstName() + '_' + chef.getLastName() + ".jpeg";
+
+			if(imageFile.isEmpty())
+				return "redirect:/error";
+
+
+			File file = fileUploadService.upload(imageFile, fileName);
+			if(file == null) {
+				return "redirect:/error";
+
+			}
+			boolean resizeResult =  imageService.resizeImage(file);
+			if(!resizeResult) {
+				return "redirect:/error";
+			}
+
+			 */
+
+			nextPage = "chef.html"; // presenta un pagina con la chef appena salvata
 		} else
 			nextPage = "chefForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
+
 	@GetMapping("/admin/editChefForm/{id}")
 	public String getChefForm(@PathVariable Long id, Model model) { // NON FUNZIONA
 		model.addAttribute("chef", chefService.findById(id));
@@ -73,10 +100,13 @@ public class ChefController {
 
 	@Transactional
 	@PostMapping("/admin/edit/chef/{id}")
-	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
+	public String editChef(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
+		Chef oldChef = chefService.findById(id);
+		if (! oldChef.equals(chef))
+			this.chefValidator.validate(chef, bindingResults);
+
 		String nextPage;
 		if(!bindingResults.hasErrors()) {
-			Chef oldChef = chefService.findById(id);
 			oldChef.setId(chef.getId());
 			oldChef.setFirstName(chef.getFirstName());
 			oldChef.setLastName(chef.getLastName());

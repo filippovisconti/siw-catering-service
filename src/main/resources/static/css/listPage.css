@@ -7,6 +7,35 @@ black #1a1a1a,
 white #f2f4ef
 off white f2f4f3, #e1e1e1
 */
+
+html.chef {
+    background-image: url("../images/chefs.jpg");
+    background-size: cover;
+}
+
+html.ingredient {
+    background-image: url("../images/ingredients3.jpg");
+    background-size: cover;
+
+}
+
+
+html.dish {
+    background-image: url("../images/dishes2.jpg");
+    background-size: cover;
+}
+
+
+html.buffet {
+    background-image: url("../images/buffet.jpg");
+    background-size: cover;
+}
+
+a.button1,
+a.button2 {
+    color: #1a1a1a;
+}
+
 .button {
     border: none;
     color: white;

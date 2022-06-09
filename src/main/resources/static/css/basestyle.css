@@ -89,12 +89,14 @@ footer {
 }
 
 footer a:link {
-    color: #854d27;
+    color: #853f27;
 }
+
 
 a:link {
     text-decoration: none;
-    color: #852f27;
+    color: #d8ff89;
+    text-shadow: #1a1a1a;
 }
 
 a:visited {

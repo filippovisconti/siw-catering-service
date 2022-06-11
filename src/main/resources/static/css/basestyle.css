@@ -101,7 +101,8 @@ a:link {
 
 a:visited {
     text-decoration: none;
-    color: #852f27;
+    color: #efffd5;
+    /*#852f27*/
 }
 
 a:hover {

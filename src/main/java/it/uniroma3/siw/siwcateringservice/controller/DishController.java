@@ -47,12 +47,9 @@ public class DishController {
 
 	// ADMIN ONLY
 	@GetMapping("/admin/dishForm")
-	public String getDishForm(Model model) { // NON FUNZIONA
-		// var d = new DishCreator();
-		// d.setIngredients(new ArrayList<>(ingredientService.findAll()));
+	public String getDishForm(Model model) {
 		model.addAttribute("dish", new Dish());
 		model.addAttribute("ingredientsList", ingredientService.findAll());
-		// model.addAttribute("ingredientList", new ArrayList<IngredientController>());
 		String nextPage = "dishForm.html";
 		return nextPage;
 	}

@@ -13,7 +13,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Table(uniqueConstraints = {
 		@UniqueConstraint(
 				name = "UniqueNameAndNationality",

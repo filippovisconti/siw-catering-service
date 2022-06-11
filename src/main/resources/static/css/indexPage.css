@@ -18,13 +18,22 @@ off white f2f4f3, #e1e1e1
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 0%;
+    border-radius: 48px;
     width: 15vw;
 }
 
+
 body {
+    height: 100vh;
     place-content: center;
 }
+
+header,
+body,
+footer {
+    background: linear-gradient(90deg, #ff6aa1, #3399ff);
+}
+
 
 a.button1,
 a.button2,

@@ -27,8 +27,8 @@
 			</div>
 		</div>
 		<div class="child">
-			<img class="profile-pic" th:src="@{/images/farina.jpeg}" src="../static/images/farina.jpeg"
-				alt="ingredient picture">
+			<img class="profile-pic" th:src="@{'/images' + '/' + ${ingredient.name} + '.jpeg'}"
+				src="../static/images/farina.jpeg" alt="ingredient picture">
 		</div>
 
 		<!-- <div class="child" th:unless="${ingredient}">This ingredient does not exist.</div>-->

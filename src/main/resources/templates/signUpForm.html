@@ -6,6 +6,7 @@
 	<title>Register - Catering Service</title>
 	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
 	<link th:href="@{/css/detailPage.css}" rel="stylesheet" href="../../static/css/detailPage.css">
+	<link th:href="@{/css/listPage.css}" rel="stylesheet" href="../../static/css/listPage.css">
 </head>
 <header>
 	<h1 class="header-title">Register</h1>
@@ -87,7 +88,7 @@
 
 					</tbody>
 				</table>
-				<table class="center-div">
+				<!--<table class="center-div">
 					<tbody>
 						<tr>
 							<td>Picture</td>
@@ -97,47 +98,13 @@
 
 						</tr>
 					</tbody>
-				</table>
+				</table>-->
 				<div class="btn-div">
-					<span><button type="submit">Confirm</button></span>
+					<span><button class="button button1" type="submit">Confirm</button></span>
 				</div>
 			</form>
 		</div>
 	</div>
-
-	<!--
-	<div>
-		<span>Name:</span>
-		<span>
-			<label>
-				<input th:field="*{name}" type="text" />
-			</label>
-		</span>
-		<span th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
-	</div>
-	<div>
-		<span>Origin:</span>
-		<span>
-			<label>
-				<input th:field="*{origin}" type="text" />
-			</label>
-		</span>
-		<span th:errors="*{origin}" th:if="${#fields.hasErrors('origin')}"></span>
-	</div>
-	<div>
-		<span>Description:</span>
-		<span>
-			<label>
-				<input th:field="*{description}" type="text" />
-			</label>
-		</span>
-		<span th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></span>
-	</div>
-	<div>
-		<span><button type="submit">Add</button></span>
-	</div>
--->
-
 
 </body>
 <footer th:replace="fragments/components :: footer">

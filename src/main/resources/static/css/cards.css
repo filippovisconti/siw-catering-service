@@ -51,6 +51,11 @@ body {
     padding: 2% 2%;
 }
 
+.card__title>a {
+    color: #1a1a1a;
+}
+
+
 .card::before,
 .card::after {
     content: '';

@@ -19,6 +19,7 @@ public class FileUploadService {
 		try {
 			Path path = Paths.get(imageFolder, newName);
 			Files.write(path, imageFile.getBytes());
+			System.out.println("Photo uploaded.");
 			return path.toFile();
 		} catch (IOException e) {
 			System.out.println("ERROR UPLOADING PHOTO: " + e.getMessage());

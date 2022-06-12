@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,7 @@ public class ChefController {
 
 
 	@GetMapping("/chefs")
-	public String getAllChefs(Model model) {
+	public String getAllChefs (Model model) {
 		List<Chef> chefs = chefService.findAll();
 		model.addAttribute("chefs", chefs);
 		String nextPage = "chefs.html";
@@ -42,7 +43,7 @@ public class ChefController {
 	}
 
 	@GetMapping("/chef/{id}")
-	public String getChef(@PathVariable("id") Long id, Model model) {
+	public String getChef (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", this.chefService.findById(id));
 		String nextPage = "chef.html";
 		return nextPage;
@@ -50,40 +51,29 @@ public class ChefController {
 
 	// ADMIN ONLY
 	@GetMapping("/admin/chefForm")
-	public String getChefForm(Model model) {
+	public String getChefForm (Model model) {
 		model.addAttribute("chef", new Chef());
 		String nextPage = "chefForm.html";
 		return nextPage;
 	}
 
 	@PostMapping("/admin/chef")
-	public String newChef(@Valid @ModelAttribute("chef") Chef chef,
-						  //@RequestParam("image") MultipartFile imageFile,
-						  BindingResult bindingResult,
-						  Model model) {
+	public String newChef (@Valid @ModelAttribute("chef") Chef chef,
+						   @RequestParam("image") MultipartFile imageFile,
+						   BindingResult bindingResult,
+						   Model model) throws IOException {
 		this.chefValidator.validate(chef, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.chefService.save(chef); // salvo un oggetto Chef
 			model.addAttribute("chef", this.chefService.findById(chef.getId()));
-/*
 			String fileName = chef.getFirstName() + '_' + chef.getLastName() + ".jpeg";
 
-			if(imageFile.isEmpty())
-				return "redirect:/error";
+			if (imageFile.isEmpty()) return "redirect:/error";
 
 
 			File file = fileUploadService.upload(imageFile, fileName);
-			if(file == null) {
-				return "redirect:/error";
-
-			}
-			boolean resizeResult =  imageService.resizeImage(file);
-			if(!resizeResult) {
-				return "redirect:/error";
-			}
-
-			 */
+			if (file == null) return "redirect:/error";
 
 			nextPage = "chef.html"; // presenta un pagina con la chef appena salvata
 		} else
@@ -92,7 +82,7 @@ public class ChefController {
 	}
 
 	@GetMapping("/admin/editChefForm/{id}")
-	public String getChefForm(@PathVariable Long id, Model model) { // NON FUNZIONA
+	public String getChefForm (@PathVariable Long id, Model model) { // NON FUNZIONA
 		model.addAttribute("chef", chefService.findById(id));
 		String nextPage = "editChefForm.html";
 		return nextPage;
@@ -100,13 +90,13 @@ public class ChefController {
 
 	@Transactional
 	@PostMapping("/admin/edit/chef/{id}")
-	public String editChef(@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
+	public String editChef (@PathVariable Long id, @Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
 		Chef oldChef = chefService.findById(id);
-		if (! oldChef.equals(chef))
+		if (!oldChef.equals(chef))
 			this.chefValidator.validate(chef, bindingResults);
 
 		String nextPage;
-		if(!bindingResults.hasErrors()) {
+		if (!bindingResults.hasErrors()) {
 			oldChef.setId(chef.getId());
 			oldChef.setFirstName(chef.getFirstName());
 			oldChef.setLastName(chef.getLastName());
@@ -122,14 +112,14 @@ public class ChefController {
 	}
 
 	@PostMapping("/admin/remove/ask/chef/{id}")
-	public String askRemoveChefById(@PathVariable("id") Long id, Model model) {
+	public String askRemoveChefById (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", this.chefService.findById(id));
 		String nextPage = "chefConfirmDelete.html";
 		return nextPage;
 	}
 
 	@PostMapping("/admin/remove/confirm/chef/{id}")
-	public String confirmRemoveChefById(@PathVariable("id") Long id, Model model) {
+	public String confirmRemoveChefById (@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {
 			this.chefService.deleteChefById(id);

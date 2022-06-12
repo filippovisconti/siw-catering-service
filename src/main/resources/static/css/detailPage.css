@@ -11,23 +11,14 @@ body div {
     margin: 1%;}
 */
 
+header,
+footer {
+    background: linear-gradient(90deg, #ffaccb, #8dc6ff);
+}
 
 
 .page-title {
     text-align: center;
-}
-
-footer a:link {
-    color: #854d27;
-}
-
-a:link {
-    text-decoration: none;
-    color: #852f27;
-}
-
-a:visited {
-    text-decoration: none;
 }
 
 .profile-pic {

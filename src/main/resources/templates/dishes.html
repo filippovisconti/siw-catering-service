@@ -28,7 +28,7 @@
             </tr>
             <tr th:each="dish : ${dishes}">
                 <td>
-                    <a href="dish.html/0" th:href="@{'/dish' + '/' + ${dish.id}}" th:text="${dish.name}">Tagliatelle di
+                    <a href="dish.html" th:href="@{'/dish' + '/' + ${dish.id}}" th:text="${dish.name}">Tagliatelle di
                         Nonna Pina</a>
                 </td>
 

@@ -103,7 +103,7 @@ public class ChefController {
 			oldChef.setNationality(chef.getNationality());
 
 			this.chefService.save(oldChef);
-			model.addAttribute("chef", chef);
+			model.addAttribute("chef", oldChef);
 			nextPage = "chef.html";
 		} else {
 			nextPage = "editChefForm.html";

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DishRepository extends CrudRepository<Dish,Long>
-{
-	Dish findByName(String name);
+public interface DishRepository extends CrudRepository<Dish, Long> {
+	Dish findByName (String name);
 
-	List<Dish> findByIngredientsContaining(Ingredient i);
-	boolean existsByName(String name);
+	List<Dish> findByIngredientsContaining (Ingredient i);
+
+	boolean existsByName (String name);
 }

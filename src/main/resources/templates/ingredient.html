@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
 	xmlns:sec="http://www.w3.org/1999/xhtml">
 
@@ -31,15 +32,11 @@
 				src="../static/images/farina.jpeg" alt="ingredient picture">
 		</div>
 
-		<!-- <div class="child" th:unless="${ingredient}">This ingredient does not exist.</div>-->
+		<div class="child" th:unless="${ingredient}">This ingredient does not exist.</div>
+	</div>
 
-		<!--<h4>Dettagli persona</h4>
-	<div th:object="${ingredient}">
-		<span th:text="*{nome}">Paolo</span>
-		<span th:text="*{cognome}">Rossi</span>
-	</div>-->
-
-
+	<div class="parent">
+		<a class="button button1" href="#" th:href="@{/ingredient}"> show all </a>
 	</div>
 </body>
 

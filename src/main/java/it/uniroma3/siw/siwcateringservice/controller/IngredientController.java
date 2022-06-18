@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Controller
 public class IngredientController {
 	@Autowired
@@ -25,55 +26,52 @@ public class IngredientController {
 	private IngredientValidator ingredientValidator;
 
 	@GetMapping("/ingredients")
-	public String getAllIngredients(Model model) {
+	public String getAllIngredients (Model model) {
 		List<Ingredient> ingredients = ingredientService.findAll();
 		model.addAttribute("ingredients", ingredients);
-		String nextPage = "ingredients.html";
-		return nextPage;
+		return "ingredients.html";
 	}
 
 	@GetMapping("/ingredient/{id}")
-	public String getIngredient(@PathVariable("id") Long id, Model model) {
+	public String getIngredient (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ingredient", this.ingredientService.findById(id));
-		String nextPage = "ingredient.html";
-		return nextPage;
+		return "ingredient.html";
 	}
 
 	// ADMIN ONLY
 	@GetMapping("/admin/ingredientForm")
-	public String getIngredientForm(Model model) {
+	public String getIngredientForm (Model model) {
 		model.addAttribute("ingredient", new Ingredient());
-		String nextPage = "ingredientForm.html";
-		return nextPage;
+		return "ingredientForm.html";
 	}
 
 	@PostMapping("/admin/ingredient")
 	public String newIngredient (@Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResult, Model model) {
-	this.ingredientValidator.validate(ingredient,bindingResult);
+		this.ingredientValidator.validate(ingredient, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.ingredientService.save(ingredient); // salvo un oggetto Ingredient
 			model.addAttribute("ingredient", this.ingredientService.findById(ingredient.getId()));
-			nextPage = "ingredient.html";	  // presenta un pagina con la ingredient appena salvata
+			nextPage = "ingredient.html";      // presenta un pagina con la ingredient appena salvata
 		} else
 			nextPage = "ingredientForm.html"; // ci sono errori, torna alla form iniziale
 		return nextPage;
 	}
+
 	@GetMapping("/admin/editIngredientForm/{id}")
-	public String getBuffetForm(@PathVariable Long id, Model model) {
+	public String getBuffetForm (@PathVariable Long id, Model model) {
 		model.addAttribute("ingredient", ingredientService.findById(id));
-		String nextPage = "editIngredientForm.html";
-		return nextPage;
+		return "editIngredientForm.html";
 	}
 
 	@Transactional
 	@PostMapping("/admin/edit/ingredient/{id}")
-	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResults, Model model) {
+	public String editBuffet (@PathVariable Long id, @Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult bindingResults, Model model) {
 		Ingredient oldIngredient = ingredientService.findById(id);
-		if (! oldIngredient.equals(ingredient))
+		if (!oldIngredient.equals(ingredient))
 			this.ingredientValidator.validate(ingredient, bindingResults);
 		String nextPage;
-		if(!bindingResults.hasErrors()) {
+		if (!bindingResults.hasErrors()) {
 			oldIngredient.setId(ingredient.getId());
 			oldIngredient.setName(ingredient.getName());
 			oldIngredient.setDescription(ingredient.getDescription());
@@ -89,18 +87,17 @@ public class IngredientController {
 
 
 	@PostMapping("/admin/remove/ask/ingredient/{id}")
-	public String askRemoveIngredientById(@PathVariable("id") Long id, Model model) {
+	public String askRemoveIngredientById (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ingredient", this.ingredientService.findById(id));
-		String nextPage = "ingredientConfirmDelete.html";
-		return nextPage;
+		return "ingredientConfirmDelete.html";
 	}
 
 	@PostMapping("/admin/remove/confirm/ingredient/{id}")
-	public String confirmRemoveIngredientById(@PathVariable("id") Long id, Model model) {
+	public String confirmRemoveIngredientById (@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {
 			this.ingredientService.deleteIngredientById(id);
-		} catch (Exception e){
+		} catch (Exception e) {
 			nextPage = "error.html";
 		}
 		return nextPage;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@SuppressWarnings("ALL")
 @Service
 public class CredentialsService {
 
@@ -17,16 +18,17 @@ public class CredentialsService {
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 
-	public Credentials getCredentials(Long id){
+	public Credentials getCredentials (Long id) {
 		var p = credentialsRepository.findById(id);
-		if (p.isPresent()) return p.get();
-		return null;
+		return p.orElse(null);
 	}
-	public Credentials getCredentials(String username){
+
+	public Credentials getCredentials (String username) {
 		Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
 		return result.orElse(null);
 	}
-	public Credentials saveCredentials(Credentials credentials){
+
+	public Credentials saveCredentials (Credentials credentials) {
 		credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
 		return credentialsRepository.save(credentials);
 	}

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Controller
 public class DishController {
 	@Autowired
@@ -29,34 +30,31 @@ public class DishController {
 	private DishValidator dishValidator;
 
 	@GetMapping("/dishes")
-	public String getAllDishes(Model model) {
+	public String getAllDishes (Model model) {
 		List<Dish> dishes = dishService.findAll();
 		model.addAttribute("dishes", dishes);
-		String nextPage = "dishes.html";
-		return nextPage;
+		return "dishes.html";
 	}
 
 	@GetMapping("/dish/{id}")
-	public String getDish(@PathVariable("id") Long id, Model model) {
+	public String getDish (@PathVariable("id") Long id, Model model) {
 		Dish d = this.dishService.findById(id);
 		model.addAttribute("dish", d);
 		model.addAttribute("dishIngredientsList", d.getIngredients());
-		String nextPage = "dish.html";
-		return nextPage;
+		return "dish.html";
 	}
 
 	// ADMIN ONLY
 	@GetMapping("/admin/dishForm")
-	public String getDishForm(Model model) {
+	public String getDishForm (Model model) {
 		model.addAttribute("dish", new Dish());
 		model.addAttribute("ingredientsList", ingredientService.findAll());
-		String nextPage = "dishForm.html";
-		return nextPage;
+		return "dishForm.html";
 	}
 
 	@PostMapping("/admin/dish")
-	public String newDish(@Valid @ModelAttribute("dish") Dish dish,
-			BindingResult bindingResult, Model model) {
+	public String newDish (@Valid @ModelAttribute("dish") Dish dish,
+						   BindingResult bindingResult, Model model) {
 		this.dishValidator.validate(dish, bindingResult);
 		String nextPage;
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
@@ -71,21 +69,20 @@ public class DishController {
 	}
 
 	@GetMapping("/admin/editDishForm/{id}")
-	public String getDishForm(@PathVariable Long id, Model model) {
+	public String getDishForm (@PathVariable Long id, Model model) {
 		model.addAttribute("dish", dishService.findById(id));
 		model.addAttribute("ingredientsList", ingredientService.findAll());
-		String nextPage = "editDishForm.html";
-		return nextPage;
+		return "editDishForm.html";
 	}
 
 	@Transactional
 	@PostMapping("/admin/edit/dish/{id}")
-	public String editDish(@PathVariable Long id, @Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResults, Model model) {
-			Dish oldDish = dishService.findById(id);
-			if (! oldDish.equals(dish))
-				this.dishValidator.validate(dish, bindingResults);
+	public String editDish (@PathVariable Long id, @Valid @ModelAttribute("dish") Dish dish, BindingResult bindingResults, Model model) {
+		Dish oldDish = dishService.findById(id);
+		if (!oldDish.equals(dish))
+			this.dishValidator.validate(dish, bindingResults);
 		String nextPage;
-		if(!bindingResults.hasErrors()) {
+		if (!bindingResults.hasErrors()) {
 			oldDish.setId(dish.getId());
 			oldDish.setName(dish.getName());
 			oldDish.setDescription(dish.getDescription());
@@ -100,14 +97,13 @@ public class DishController {
 	}
 
 	@PostMapping("/admin/remove/ask/dish/{id}")
-	public String askRemoveDishById(@PathVariable("id") Long id, Model model) {
+	public String askRemoveDishById (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("dish", this.dishService.findById(id));
-		String nextPage = "dishConfirmDelete.html";
-		return nextPage;
+		return "dishConfirmDelete.html";
 	}
 
 	@PostMapping("/admin/remove/confirm/dish/{id}")
-	public String confirmRemoveDishById(@PathVariable("id") Long id, Model model) {
+	public String confirmRemoveDishById (@PathVariable("id") Long id, Model model) {
 		String nextPage = "success.html";
 		try {
 			this.dishService.deleteDishById(id);

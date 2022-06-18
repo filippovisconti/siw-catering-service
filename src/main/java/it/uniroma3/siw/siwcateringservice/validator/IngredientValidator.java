@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 // https://docs.oracle.com/javaee/7/api/javax/validation/constraints/package-summary.html
+@SuppressWarnings("ALL")
 @Component
 public class IngredientValidator implements Validator {
 
@@ -17,7 +18,7 @@ public class IngredientValidator implements Validator {
 
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.ingredientService.hasDuplicate((Ingredient) target)){
+		if (this.ingredientService.hasDuplicate((Ingredient) target)) {
 			errors.reject("ingredient.duplicate", "duplicate ingredient");
 		}
 	}

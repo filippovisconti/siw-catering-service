@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Service
 public class DishService {
 
@@ -30,15 +31,13 @@ public class DishService {
 
 	public Dish findById (Long id) {
 		var p = dishRepository.findById(id);
-		if (p.isPresent())
-			return p.get();
-		return null;
+		return p.orElse(null);
 	}
 
 	public List<Dish> findByIds (List<Long> ids) {
 		var i = dishRepository.findAllById(ids);
 		List<Dish> dishList = new ArrayList<>();
-		for(Dish dish : i)
+		for (Dish dish : i)
 			dishList.add(dish);
 		return dishList;
 	}
@@ -47,6 +46,7 @@ public class DishService {
 	public void save (Dish dish) {
 		dishRepository.save(dish);
 	}
+
 	@Transactional
 
 	public void deleteDishById (Long id) {

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Service
 public class IngredientService {
 
@@ -43,8 +44,7 @@ public class IngredientService {
 
 	public Ingredient findById (Long id) {
 		var p = ingredientRepository.findById(id);
-		if (p.isPresent()) return p.get();
-		return null;
+		return p.orElse(null);
 	}
 
 	@Transactional

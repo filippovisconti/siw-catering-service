@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+@SuppressWarnings("ALL")
 @Controller
 public class AuthController {
 
@@ -26,12 +27,12 @@ public class AuthController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(Model model) {
+	public String logout (Model model) {
 		return "redirect:/public";
 	}
 
 	@GetMapping("/register")
-	public String getRegisterPage(Model model) {
+	public String getRegisterPage (Model model) {
 		model.addAttribute("credentials", new Credentials());
 		return "signUpForm";
 	}
@@ -52,7 +53,7 @@ public class AuthController {
 	}
 
 	@GetMapping("/default")
-	public String defaultAfterLogin(Model model) {
+	public String defaultAfterLogin (Model model) {
 
 		UserDetails adminDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(adminDetails.getUsername());

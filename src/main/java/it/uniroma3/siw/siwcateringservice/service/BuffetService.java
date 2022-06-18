@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Service
 public class BuffetService {
 
@@ -42,10 +43,9 @@ public class BuffetService {
 
 	public Buffet findById (Long id) {
 		var p = buffetRepository.findById(id);
-		if (p.isPresent())
-			return p.get();
-		return null;
+		return p.orElse(null);
 	}
+
 	@Transactional
 	public void deleteBuffetById (Long id) {
 		buffetRepository.deleteById(id);

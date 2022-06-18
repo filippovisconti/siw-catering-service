@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Service
 public class ChefService {
 
@@ -39,10 +40,9 @@ public class ChefService {
 
 	public Chef findById (Long id) {
 		var p = chefRepository.findById(id);
-		if (p.isPresent())
-			return p.get();
-		return null;
+		return p.orElse(null);
 	}
+
 	@Transactional
 	public void deleteChefById (Long id) {
 		chefRepository.deleteById(id);

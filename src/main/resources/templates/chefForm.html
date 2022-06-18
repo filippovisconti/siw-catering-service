@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
 	xmlns:sec="http://www.w3.org/1999/xhtml">
 
@@ -73,37 +74,9 @@
 				<div class="btn-div">
 					<span><button class="button button1" type="submit">Confirm</button></span>
 				</div>
+			</form>
 		</div>
-		</form>
 	</div>
-	<!-- <div>
-		<span>First name:</span>
-		<span>
-			<label>
-				<input th:field="*{firstName}" type="text" />
-			</label>
-		</span>
-
-	</div>
-	<div>
-		<span>Last name:</span>
-		<span>
-			<label>
-				<input th:field="*{lastName}" type="text" />
-			</label>
-		</span>
-		<span th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></span>
-	</div>
-
-	<div>
-		<span>Nationality:</span>
-		<span>
-			<label>
-				<input th:field="*{nationality}" type="text" />
-			</label>
-		</span>
-		<span th:errors="*{nationality}" th:if="${#fields.hasErrors('nationality')}"></span>
-	</div>-->
 
 </body>
 <footer th:replace="fragments/components :: footer">

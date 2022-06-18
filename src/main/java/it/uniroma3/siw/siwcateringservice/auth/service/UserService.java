@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+@SuppressWarnings("ALL")
 @Service
 public class UserService {
 
@@ -14,8 +15,7 @@ public class UserService {
 
 	public User getUser (Long id) {
 		var p = userRepository.findById(id);
-		if (p.isPresent()) return p.get();
-		return null;
+		return p.orElse(null);
 	}
 
 	public User saveUser (User user) {

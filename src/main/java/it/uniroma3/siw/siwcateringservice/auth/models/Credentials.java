@@ -2,7 +2,6 @@ package it.uniroma3.siw.siwcateringservice.auth.models;
 
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -36,7 +35,7 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
-	public Credentials(){
+	public Credentials () {
 		this.user = new User();
 	}
 }

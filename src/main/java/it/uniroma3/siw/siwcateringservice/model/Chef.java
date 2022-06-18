@@ -33,11 +33,6 @@ public class Chef {
 	@OneToMany(mappedBy = "chef")
 	private List<Buffet> offeredBuffets;
 
-	/*@ElementCollection
-	@NotEmpty
-	private List<Long> offeredBuffets;
-	 */
-
 	@Override
 	public String toString () {
 		return id + " " + firstName + " " + lastName + ", " + nationality;

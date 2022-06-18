@@ -31,7 +31,7 @@
 
 <body>
 	This will be the body
-	<p>Some text with a <a href="http://www.filippovisconti.com">link</a>.</p>
+	<p>Some text with a <a href="https://www.filippovisconti.com">link</a>.</p>
 </body>
 
 <footer class="fixed-footer" th:fragment="footer">
@@ -45,7 +45,6 @@
 			<a href="/index.html" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
 			<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
 		</span>
-
 	</div>
 </footer>
 

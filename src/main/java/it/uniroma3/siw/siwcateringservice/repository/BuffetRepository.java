@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BuffetRepository extends CrudRepository<Buffet,Long>
-{
-	Buffet findByName(String name);
+public interface BuffetRepository extends CrudRepository<Buffet, Long> {
+	Buffet findByName (String name);
 
-	boolean existsByName(String name);
+	boolean existsByName (String name);
 
 	List<Buffet> findByChef (Chef chef);
 

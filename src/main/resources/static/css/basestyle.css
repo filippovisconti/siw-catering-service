@@ -125,7 +125,7 @@ a:active {
 
     justify-content: space-around;
     align-items: flex-start;
-    margin-top: 15px, 50px
+    margin-top: 15px 50px
 }
 
 .child {
@@ -141,7 +141,7 @@ a:active {
     flex-flow: column;
 
     justify-content: space-around;
-    margin: 10px, 50px
+    margin: 10px 50px
 }
 
 .childCol {

@@ -20,14 +20,14 @@ public class ImageService {
 	@Value("${image.size}")
 	private Integer imageSize;
 
-	public boolean resizeImage(File sourceFile) {
+	public boolean resizeImage (File sourceFile) {
 		try {
 			BufferedImage bufferedImage = ImageIO.read(sourceFile);
 			BufferedImage outputImage = Scalr.resize(bufferedImage, imageSize);
 			String newFileName = FilenameUtils.getBaseName(sourceFile.getName())
 					+ "_" + imageSize.toString() + "."
 					+ FilenameUtils.getExtension(sourceFile.getName());
-			Path path = Paths.get(imageFolder,newFileName);
+			Path path = Paths.get(imageFolder, newFileName);
 			File newImageFile = path.toFile();
 			ImageIO.write(outputImage, "jpeg", newImageFile);
 			outputImage.flush();

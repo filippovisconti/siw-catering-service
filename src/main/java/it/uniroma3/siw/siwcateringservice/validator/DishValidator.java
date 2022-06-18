@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 // https://docs.oracle.com/javaee/7/api/javax/validation/constraints/package-summary.html
+@SuppressWarnings("ALL")
 @Component
 public class DishValidator implements Validator {
 
@@ -17,14 +18,10 @@ public class DishValidator implements Validator {
 
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.dishService.hasDuplicate((Dish) target)){
+		if (this.dishService.hasDuplicate((Dish) target)) {
 			errors.reject("dish.duplicate", "duplicate dish, damn");
 		}
-		/*if (((Dish) target).getIngredients().isEmpty() ||((Dish) target).getIngredients() == null){
-			errors.reject("dish.no_ingredients", "no ingredients");
-		}
 
-		 */
 	}
 
 	@Override
